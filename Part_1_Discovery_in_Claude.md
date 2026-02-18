@@ -1,4 +1,4 @@
-# Part 1: Rapid Discovery with AI 
+# Part 1: Rapid Discovery
 
 **Purpose**: Do just enough discovery to write a solid PRD before coding. Use any AI tool (Claude, ChatGPT, Perplexity, etc.) with the copy-paste prompts provided.
 
@@ -8,49 +8,49 @@
 
 **What's included**: Ready-to-use prompts for each step—just fill in your specifics and paste into your AI tool of choice.
 
----
+***
 
-## Why Any Discovery At All
+### Why Any Discovery At All
 
 You need enough context to write a PRD that Cursor can execute against. Not full validation—that comes after MVP. Just enough to avoid building something obviously wrong.
 
-**Bad**: "Build a productivity app" → Cursor has no direction  
+**Bad**: "Build a productivity app" → Cursor has no direction\
 **Good**: "Build a lesson planning tool that reduces teacher prep time from 2 hours to 15 minutes by automating standards alignment"
 
 The difference is 4-8 hours of focused discovery with AI assistance.
 
----
+***
 
-## The Rapid Discovery Process
+### The Rapid Discovery Process
 
 Four steps, 4-8 hours total:
 
-0. **AI-Assisted Market Research** (30-60 min) - ALWAYS start here - understand the landscape
-1. **Pick Your Validation Method** (30 min) - Choose based on what market research revealed
-2. **Execute Discovery** (2-4 hours) - Follow your chosen method with AI assistance
-3. **Generate PRD** (1-2 hours) - AI transforms findings into structured PRD
+1. **AI-Assisted Market Research** (30-60 min) - ALWAYS start here - understand the landscape
+2. **Pick Your Validation Method** (30 min) - Choose based on what market research revealed
+3. **Execute Discovery** (2-4 hours) - Follow your chosen method with AI assistance
+4. **Generate PRD** (1-2 hours) - AI transforms findings into structured PRD
 
 **Copy-paste prompts provided for every step.**
 
 **Not included**: Full assumption mapping, extensive experiments, 697-complaint analysis. Those are for post-MVP validation.
 
----
+***
 
-## Step 0: AI-Assisted Market Research (30-60 min)
+### AI-Assisted Market Research (10-30 min)
 
 **START HERE EVERY TIME.** Before you pick a validation method, get AI to map the landscape.
 
 This step uses web search heavily. Use Claude with web search, ChatGPT with browsing, or Perplexity.
 
-### What You're Learning
+#### What You're Learning
 
-- Who are the existing players?
-- What do they cost?
-- What are users complaining about?
-- What gaps exist?
-- Are there regulatory constraints?
+* Who are the existing players?
+* What do they cost?
+* What are users complaining about?
+* What gaps exist?
+* Are there regulatory constraints?
 
-### Copy-Paste Prompt (use in Claude, ChatGPT, etc.)
+#### Copy-Paste Prompt (use in Claude, ChatGPT, etc.)
 
 ```
 I have an idea for: [YOUR IDEA - 1-2 sentences]
@@ -90,9 +90,9 @@ Synthesize findings into:
 Format as markdown with clear sections.
 ```
 
-### Example Output You'll Get
+#### Example Output You'll Get
 
-```markdown
+```
 ## Market Research: Lesson Planning Tools
 
 ### Existing Solutions
@@ -123,42 +123,45 @@ Format as markdown with clear sections.
 - Freemium possible for user acquisition
 ```
 
-### What This Tells You
+#### What This Tells You
 
-After 30-60 minutes, you know:
-- **Whether your idea already exists** (if yes, what gap you'll fill)
-- **What users are willing to pay** (pricing benchmark)
-- **What the real pain points are** (from complaints, not assumptions)
-- **What validation method to use next** (interviews? experiment? problem research?)
+After 10-30 minutes, you know:
 
-### Decision Point
+* **Whether your idea already exists** (if yes, what gap you'll fill)
+* **What users are willing to pay** (pricing benchmark)
+* **What the real pain points are** (from complaints, not assumptions)
+* **What validation method to use next** (interviews? experiment? problem research?)
+
+#### Decision Point
 
 Based on market research:
 
-**If competitors exist but users complain** → Proceed to Step 1 (pick validation method)  
-**If market is saturated and users are happy** → Consider different idea  
+**If competitors exist but users complain** → Proceed to Step 1 (pick validation method)\
+**If market is saturated and users are happy** → Consider different idea\
 **If no competitors exist** → Validate the problem is real (could be no competitors because no one wants this)
 
----
+***
 
-## Step 1: Pick Your Validation Method (30 min)
+### Step 1: Pick Your Validation Method (30 min)
 
 Now that you understand the market, choose ONE validation method based on what you're uncertain about.
 
 Choose ONE based on what you're uncertain about.
 
-### Option A: User Interviews (if you have access to users)
+#### Option A: User Interviews (if you have access to users)
 
 **Use when**: You have a problem hypothesis but don't know if it's painful enough
 
 **What to do**:
-- Find 3-5 people who have the problem
-- 30-minute calls each
-- Ask: What's your current workflow? Where does it break? How much time/money does that cost?
+
+* Find 3-5 people who have the problem
+* 30-minute calls each
+* Ask: What's your current workflow? Where does it break? How much time/money does that cost?
 
 **Time**: 3-4 hours (includes recruitment, calls, synthesis)
 
 **Copy-Paste Prompt**:
+
 ```
 I'm building [YOUR PRODUCT IDEA - 1-2 sentences].
 
@@ -194,19 +197,21 @@ Format as numbered list with follow-up probes for each question.
 
 **Output**: Interview script you can use immediately
 
-### Option B: Deep Problem Research (if you need user voice)
+#### Option B: Deep Problem Research (if you need user voice)
 
 **Use when**: Market research shows complaints exist, but you need deeper understanding of HOW users describe the problem
 
 **What to do**:
-- Use AI to search forums, Reddit, Twitter for actual user complaints
-- Analyze language patterns (how do they describe the problem?)
-- Identify specific user segments
-- Quantify severity from their words
 
-**Time**: 2-3 hours (AI-assisted research)
+* Use AI to search forums, Reddit, Twitter for actual user complaints
+* Analyze language patterns (how do they describe the problem?)
+* Identify specific user segments
+* Quantify severity from their words
+
+**Time**: 1-2 hours (AI-assisted research)
 
 **Copy-Paste Prompt**:
+
 ```
 Based on this market research: [PASTE YOUR MARKET RESEARCH FROM STEP 0]
 
@@ -244,25 +249,28 @@ Format as markdown with clear sections and quote attribution.
 
 **Output**: User voice analysis with verbatim quotes, pain patterns, severity data
 
-### Option C: Quick Technical Experiment (if you need feasibility validation)
+#### Option C: Quick Technical Experiment (if you need feasibility validation)
 
 **Use when**: You're unsure if the technical approach will actually work
 
 **What to do**:
-- Build smallest possible test (1-3 hours of coding)
-- Example: If building AI tool, test prompt quality with 5-10 examples
-- Example: If building integration, test API with sample data
-- Example: If building automation, test with manual process first
+
+* Build smallest possible test (1-3 hours of coding)
+* Example: If building AI tool, test prompt quality with 5-10 examples
+* Example: If building integration, test API with sample data
+* Example: If building automation, test with manual process first
 
 **Time**: 2-4 hours (includes coding, testing, analysis)
 
 **What to validate**:
-- Can AI generate acceptable output quality?
-- Does the API have required data/endpoints?
-- Is performance acceptable for user experience?
-- Are there blockers we didn't anticipate?
+
+* Can AI generate acceptable output quality?
+* Does the API have required data/endpoints?
+* Is performance acceptable for user experience?
+* Are there blockers we didn't anticipate?
 
 **Copy-Paste Prompt (for AI quality testing)**:
+
 ```
 I want to build [YOUR PRODUCT] using [AI MODEL/API].
 
@@ -289,6 +297,7 @@ API/Model: [Anthropic Claude/OpenAI/etc.]
 ```
 
 **Copy-Paste Prompt (for API integration testing)**:
+
 ```
 I want to integrate with [EXTERNAL API/SERVICE] to get [WHAT DATA].
 
@@ -317,15 +326,16 @@ Target language: [Python/JavaScript/etc.]
 
 **Output**: Working prototype OR evidence that approach won't work (both are valuable)
 
----
+***
 
-## Step 2: Execute Discovery (2-4 hours)
+### Step 2: Execute Discovery (2-4 hours)
 
-### If You Chose User Interviews:
+#### If You Chose User Interviews:
 
 **After conducting 3-5 interviews**, use AI to synthesize findings.
 
 **Copy-Paste Synthesis Prompt**:
+
 ```
 I conducted [NUMBER] user interviews about [PROBLEM AREA].
 
@@ -374,7 +384,8 @@ Format as markdown with clear sections.
 ```
 
 **Example Output You'll Get**:
-```markdown
+
+```
 ## User Interview Synthesis
 
 **Interviews conducted**: 5 elementary teachers
@@ -413,11 +424,12 @@ Format as markdown with clear sections.
 **MVP**: Automated standards alignment for common lesson structures. Defer differentiation to V2.
 ```
 
-### If You Chose Deep Problem Research:
+#### If You Chose Deep Problem Research:
 
 Use the AI to analyze and organize all the forum/Reddit posts it found.
 
 **Copy-Paste Synthesis Prompt**:
+
 ```
 Based on the user voice research you did, organize findings:
 
@@ -451,12 +463,13 @@ Based on the user voice research you did, organize findings:
 Format as markdown.
 ```
 
-### If You Chose Quick Technical Experiment:
+#### If You Chose Quick Technical Experiment:
 
 After running your test code (from the prompt earlier), analyze results.
 
 **Example Analysis** (AI quality test):
-```markdown
+
+```
 ## Technical Validation: AI Lesson Plan Generation
 
 **Test date**: February 2026
@@ -483,13 +496,13 @@ After running your test code (from the prompt earlier), analyze results.
 
 If test fails (quality <70%), document what failed and why, then decide: improve prompts, try different model, or change approach.
 
----
+***
 
-## Step 3: Write the PRD (1-2 hours)
+### Step 3: Write the PRD (1-2 hours)
 
 Take your discovery output and structure it for Cursor.
 
-### Copy-Paste PRD Generation Prompt
+#### Copy-Paste PRD Generation Prompt
 
 ```
 I've completed discovery research for my product idea. Help me write a PRD (Product Requirements Document) that an AI coding assistant (Cursor) can use to build the MVP.
@@ -655,16 +668,17 @@ Based on the discovery data I provided:
 - Ensure MVP scope is minimal but solves the core validated problem
 ```
 
-### What You'll Get
+#### What You'll Get
 
 A complete, structured PRD that Cursor can use to understand:
-- Exactly what problem you're solving (with evidence)
-- Who you're solving it for (with quotes)
-- What to build first (prioritized features)
-- How to measure success (specific metrics)
-- What NOT to build yet (out of scope)
 
-```markdown
+* Exactly what problem you're solving (with evidence)
+* Who you're solving it for (with quotes)
+* What to build first (prioritized features)
+* How to measure success (specific metrics)
+* What NOT to build yet (out of scope)
+
+```
 ---
 
 ## Summary: Rapid Discovery (4-8 hours)
@@ -715,3 +729,4 @@ A complete, structured PRD that Cursor can use to understand:
 ---
 
 **Next**: [Part 2: Knowledge Handoff (Claude → Cursor)](./Part_2_Knowledge_Handoff.md)
+```
