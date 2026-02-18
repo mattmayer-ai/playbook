@@ -125,6 +125,50 @@ If you're measured by shipped value and learning velocity—not slide decks—th
 
 ---
 
+## Appendices
+
+### [Appendix A: Cursor Setup with Mission-Based Organization](./Appendix_A_Cursor_Missions.md)
+
+**When to use**: Large projects (10+ features) that need clear organizational structure for AI assistants.
+
+**What you'll learn**:
+- Mission-based organization pattern
+- How to structure `docs/missions/` directory
+- Creating mission index (MISSIONS_QUICK_GUIDE.md)
+- Detailed mission specifications
+- Lightweight .cursorrules that reference missions
+
+**Benefits**:
+- Faster Cursor context navigation
+- Clear feature boundaries
+- Better AI assistance at scale
+- Easier onboarding for new developers
+
+**Setup time**: 4-6 hours for initial mission structure
+
+### [Appendix B: MCP Configuration for Rapid Development](./Appendix_B_MCP_Configuration.md)
+
+**When to use**: Need Cursor to interact with external systems (databases, Docker, GitHub) or enhanced reasoning.
+
+**What you'll learn**:
+- Essential MCPs for product development
+- Docker MCP (container debugging)
+- GitHub MCP (issue/PR context)
+- Sequential-thinking MCP (complex reasoning)
+- PostgreSQL MCP (database inspection)
+- Security best practices
+
+**Configuration examples**:
+- Minimal setup (Docker + Sequential-thinking)
+- Full development setup (all 4 MCPs)
+- Environment variable management
+
+**Setup time**: 15-30 minutes for basic config
+
+**ROI**: 30-60 minutes saved daily through reduced context switching
+
+---
+
 ## Quick Start
 
 ### If you have an idea but no validation:
@@ -178,6 +222,16 @@ Follow the pivot framework:
 ### Product Innovation
 
 **[Product Innovation Playbook](./Product_Innovation_Playbook_Rewritten.md)** - The conceptual framework that precedes technical implementation
+
+### Cursor Enhancement
+
+**[Appendix A: Mission-Based Organization](./Appendix_A_Cursor_Missions.md)** - Advanced Cursor setup for large projects (10+ features)
+
+**[Appendix B: MCP Configuration](./Appendix_B_MCP_Configuration.md)** - Configure Model Context Protocol for Docker, GitHub, databases, and enhanced reasoning
+
+### Quick Reference
+
+**[Discovery Prompts Quick Reference](./Discovery_Prompts_Quick_Reference.md)** - All AI prompts in one place for rapid copy-paste
 
 ---
 
