@@ -1,448 +1,369 @@
-# Discovery Prompts - Quick Reference
+# Innovation Playbook
 
-Copy-paste these prompts into Claude, ChatGPT, Perplexity, or any AI tool. Just fill in the [BRACKETED] sections with your specifics.
+**Version**: 1.0\
+**Last Updated**: February 2026
 
----
+A systematic approach to product development from discovery through scaling, designed for rapid setup with AI coding assistants.
 
-## Step 0: Market Research (30-60 min)
+***
 
-**Use in**: Claude with web search, ChatGPT with browsing, or Perplexity
+## Overview
 
-```
-I have an idea for: [YOUR IDEA - 1-2 sentences]
+This playbook documents the methodology I've developed over 15 years building products in aviation (Air Canada), defense (RaceRocks), and enterprise software (Swift Racks). It separates discovery (Claude/ChatGPT) from implementation (Cursor) and emphasizes rapid validation over exhaustive research.
 
-Help me research the market:
+**The workflow:**
 
-1. **Existing solutions**: Who are the top 5-7 competitors/alternatives? 
-   - Use web search to find them
-   - Include both direct competitors and adjacent solutions
+* **Rapid discovery** (2-8 hours) - Pick ONE validation method, write PRD
+* **Knowledge handoff** (2-6 hours) - Package discovery for AI consumption
+* **Infrastructure setup in Cursor** (2-4 hours) - Rapid project configuration
+* **Start building** (same day) - Begin feature development with context
 
-2. **Pricing landscape**: What do these solutions cost?
-   - Find pricing pages
-   - Note free tiers, entry-level plans, enterprise pricing
+**Total time to first code: 6-18 hours** (not weeks)
 
-3. **User complaints**: What are people saying is broken?
-   - Search Reddit, G2, Capterra for "[competitor name] review"
-   - Look for patterns in negative reviews
-   - Find forum discussions about problems in this space
+***
 
-4. **Market gaps**: What's missing?
-   - Features users are asking for
-   - Use cases not being served
-   - Underserved user segments
+## Who This Is For
 
-5. **Regulatory landscape**: Are there compliance requirements?
-   - HIPAA, GDPR, industry-specific regulations
-   - Data handling requirements
-   - Certification or licensing needs
+* Product leaders who need repeatable discovery and delivery rhythms.
+* Founders navigating validation to product-market fit.
+* Cross-functional teams who want clear artifacts that connect insight to implementation.
+* My students at Schulich School of Business who need practical frameworks that bridge theory and execution.
 
-Synthesize findings into:
-- Competitive landscape table
-- Common user complaints
-- Identified gaps
-- Regulatory constraints (if any)
-- Pricing benchmarks
+If you're measured by shipped value and learning velocity—not slide decks—this is relevant.
 
-Format as markdown with clear sections.
-```
+***
 
----
+## Core Principles
 
-## Step 1A: User Interview Script
+* Speed of movement is linked to speed of data insights. Four hours of focused discovery beats weeks of analysis paralysis.
+* Evidence over ego. Quick experiments (2-8 hours) beat assumptions. The 697 complaints analysis was thorough, but most projects need rapid validation, not exhaustive research.
+* Customer-first thinking. Talk to 3-5 users or run a quick experiment. Don't build in isolation.
+* Standardization reduces cognitive overhead. Same structure every project means less time deciding, more time building.
+* Configuration debt compounds. Setting up TypeScript, linting, and testing from day one is faster than retrofitting later.
+* Rapid validation, then iterate. Get to working code fast. Full validation comes after MVP, not before.
 
-**Use in**: Any AI tool
+***
 
-```
-I'm building [YOUR PRODUCT IDEA - 1-2 sentences].
+## The Playbook
 
-Target users: [WHO - e.g., "elementary teachers", "construction contractors"]
+### [Part 1: Discovery](innovation-playbook/part_1_discovery_in_claude.md)
 
-Problem I think they have: [PROBLEM - e.g., "spend too much time on lesson planning"]
+Purpose: Do just enough discovery to write a solid PRD before coding.
 
-Create an interview script for 30-minute calls. Generate 10-12 open-ended questions that:
+What you produce:
 
-1. Understand current workflow (3-4 questions)
-   - How they do this task today
-   - Tools they currently use
-   - Time it takes
+* Discovery output: User interviews OR industry research OR quick experiment OR problem research
+* Structured PRD ready for Cursor consumption
 
-2. Identify pain points (3-4 questions)
-   - Where current process breaks down
-   - Most frustrating parts
-   - Impact on their work
+Time: 4-8 hours (not weeks)
 
-3. Quantify impact (2-3 questions)
-   - Time wasted per week/month
-   - Money lost due to this problem
-   - What happens if problem isn't solved
+Approach: Pick ONE validation method based on what you're uncertain about:
 
-4. Test solution fit (2-3 questions)
-   - Willingness to try new solution
-   - What would make them NOT use it
-   - Price sensitivity
+* User interviews (3-5 people, 30 min each) - if you need to understand pain points
+* Industry research (AI-assisted) - if you need market/competitive context
+* Quick experiment (technical validation) - if you need to test feasibility
+* Problem research (AI-assisted) - if you're starting from scratch
 
-Avoid leading questions. Don't describe my solution—focus on their problem.
-Format as numbered list with follow-up probes for each question.
-```
+Output: Rapid PRD with problem statement, MVP scope, success metrics
 
----
+### [Part 2: Knowledge Handoff (Claude → Cursor)](innovation-playbook/part_2_knowledge_handoff.md)
 
-## Step 1B: Deep Problem Research
+Purpose: Package discovery output for implementation.
 
-**Use in**: Claude with web search, ChatGPT with browsing, or Perplexity
+What you create:
 
-```
-Based on this market research: [PASTE YOUR MARKET RESEARCH FROM STEP 0]
+* PRD.md (product requirements)
+* CONTEXT.md (domain knowledge)
+* CONSTRAINTS.md (technical/compliance limits)
+* ARCHITECTURE.md (key decisions)
+* .cursorrules (coding patterns)
 
-Now find the user voice. Search for:
+Time: 4-8 hours
 
-1. Reddit discussions
-   - Search r/[relevant subreddits] for posts about [problem area]
-   - Find threads where users complain about current solutions
-   - Extract verbatim quotes about pain points
+Why it matters: Cursor is only as effective as the context you provide. Good handoff means correct assumptions about architecture, security, compliance, and user needs.
 
-2. Forum discussions
-   - Search [relevant forums] for [problem keywords]
-   - Find specific examples of users describing the problem
-   - Note how they quantify impact (time, money, frustration)
+### [Part 3: Infrastructure Setup in Cursor](innovation-playbook/part_3_infrastructure_setup.md)
 
-3. Twitter/X conversations
-   - Search for [problem keywords] + complaint keywords
-   - Find users talking about this problem
-   - Note patterns in their language
+Purpose: Rapidly configure projects for scalable development.
 
-Focus on finding:
-- WHO specifically has this problem (job titles, contexts, situations)
-- HOW they describe it (their words, not industry jargon)
-- WHAT they've tried (existing solutions, workarounds, why they failed)
-- HOW SEVERE (quantifiable impact: hours wasted, money lost, consequences)
+What you set up:
 
-Organize findings by:
-- User segment (e.g., "elementary teachers", "general contractors bidding $500K-$5M projects")
-- Pain point themes (with frequency count)
-- Verbatim quotes (most vivid examples)
-- Quantified impact (time/cost data from posts)
+* Repository (Git, .gitignore)
+* TypeScript (strict mode, path aliases)
+* Code quality (ESLint, Prettier)
+* Folder structure (standardized)
+* Environment variables (template pattern)
+* Testing (Jest, coverage)
 
-Format as markdown with clear sections and quote attribution.
-```
+Time: 4-6 hours
 
----
+Key frameworks:
 
-## Step 1C: Technical Feasibility Test (AI Quality)
+* Platform choice (web vs mobile)
+* Backend choice (BaaS vs custom)
+* Database choice (document vs relational)
+* State management (server vs client)
+* Compliance patterns (HIPAA, PCI-DSS)
 
-**Use in**: Any AI tool
+### [Part 4: Iteration and Scaling](innovation-playbook/part_4_iteration_and_scaling.md)
 
-```
-I want to build [YOUR PRODUCT] using [AI MODEL/API].
+Purpose: Handle pivots, refactoring, and infrastructure evolution.
 
-Help me design a quick test to validate feasibility:
+What you learn:
 
-1. Generate 10 test cases that represent typical use
-   - Cover edge cases
-   - Include both simple and complex examples
-   - Represent real user scenarios
+* When to pivot vs kill (decision framework)
+* How to execute pivots (keep validated learnings)
+* Refactor vs start fresh (decision criteria)
+* When to scale (performance, cost, reliability signals)
+* Migration patterns (BaaS → AWS, monolith → services)
 
-2. For each test case, write:
-   - Input (what user would provide)
-   - Expected output (what constitutes "success")
-   - Acceptance criteria (how to judge if it's good enough)
+Key case studies:
 
-3. Provide code template to run the test:
-   - Loop through test cases
-   - Call API
-   - Evaluate results against criteria
-   - Calculate success rate
+* TakeCost: Accuracy → Speed pivot (85% adoption)
+* EdPal: VR → AI pivot (complete restart)
+* Air Canada: BaaS → Custom backend (gradual migration)
 
-Target language: [Python/JavaScript/etc.]
-API/Model: [Anthropic Claude/OpenAI/etc.]
-```
+***
 
----
+## Appendices
 
-## Step 1C: Technical Feasibility Test (API Integration)
+### [Appendix A: Cursor Setup with Mission-Based Organization](supporting-docs/appendix_a_cursor_missions.md)
 
-**Use in**: Any AI tool
+When to use: Large projects (10+ features) that need clear organizational structure for AI assistants.
 
-```
-I want to integrate with [EXTERNAL API/SERVICE] to get [WHAT DATA].
+What you'll learn:
 
-Help me test if this is feasible:
+* Mission-based organization pattern
+* How to structure `docs/missions/` directory
+* Creating mission index (MISSIONS\_QUICK\_GUIDE.md)
+* Detailed mission specifications
+* Lightweight .cursorrules that reference missions
 
-1. Find the API documentation
-   - Identify required endpoints
-   - Check authentication requirements
-   - Note rate limits and costs
+Benefits:
 
-2. Generate test code to:
-   - Authenticate with API
-   - Fetch sample data (5-10 test queries)
-   - Check if data includes what we need
-   - Measure response times
+* Faster Cursor context navigation
+* Clear feature boundaries
+* Better AI assistance at scale
+* Easier onboarding for new developers
 
-3. Evaluate feasibility:
-   - Does API provide required data?
-   - Is data quality sufficient?
-   - Are there deal-breaker limitations?
-   - What's the cost at expected scale?
+Setup time: 4-6 hours for initial mission structure
 
-Provide working code I can run immediately.
-Target language: [Python/JavaScript/etc.]
-```
+### [Appendix B: MCP Configuration for Rapid Development](supporting-docs/appendix_b_mcp_configuration.md)
 
----
+When to use: Need Cursor to interact with external systems (databases, Docker, GitHub) or enhanced reasoning.
 
-## Step 2A: Synthesize User Interviews
+What you'll learn:
 
-**Use in**: Any AI tool
+* Essential MCPs for product development
+* Docker MCP (container debugging)
+* GitHub MCP (issue/PR context)
+* Sequential-thinking MCP (complex reasoning)
+* PostgreSQL MCP (database inspection)
+* Security best practices
 
-```
-I conducted [NUMBER] user interviews about [PROBLEM AREA].
+Configuration examples:
 
-Here are my raw notes from each interview:
+* Minimal setup (Docker + Sequential-thinking)
+* Full development setup (all 4 MCPs)
+* Environment variable management
 
-**Interview 1**:
-[PASTE NOTES]
+Setup time: 15-30 minutes for basic config
 
-**Interview 2**:
-[PASTE NOTES]
+ROI: 30-60 minutes saved daily through reduced context switching
 
-[Continue for all interviews]
+***
 
-Synthesize these findings:
+## Quick Start
 
-1. **Current workflow patterns**
-   - How do most users approach this task?
-   - What tools do they use?
-   - How long does it take?
+### If you have an idea but no validation:
 
-2. **Pain point themes** (ranked by frequency)
-   - What problems came up most often?
-   - How did users describe the pain?
-   - Include verbatim quotes for top 3 pain points
+Start with [Part 1: Rapid Discovery](innovation-playbook/part_1_discovery_in_claude.md)
 
-3. **Quantified impact**
-   - Time wasted: [X hours per week/month]
-   - Money lost: [Y dollars]
-   - Other consequences: [specific examples]
+Rapid process (4-8 hours):
 
-4. **Current workarounds**
-   - What are they doing now to cope?
-   - Why don't those solutions work?
+{% stepper %}
+{% step %}
+### Pick ONE validation method (≈1 hour)
 
-5. **Willingness to change**
-   - How motivated are they to solve this?
-   - What would make them try a new solution?
-   - Price sensitivity signals
+Choose one:
 
-6. **Decision**
-   - Should I build this? (Yes/No/Need more data)
-   - Reasoning based on findings
-   - If yes, what's the minimum viable solution?
+* User interviews
+* Industry research
+* Quick experiment
+* Problem research
+{% endstep %}
 
-Format as markdown with clear sections.
-```
+{% step %}
+### Execute discovery (≈2–5 hours)
 
----
+Run the chosen method: AI-assisted research, quick interviews, or a technical test.
+{% endstep %}
 
-## Step 2B: Synthesize Problem Research
+{% step %}
+### Write PRD (≈1–2 hours)
 
-**Use in**: Any AI tool
+Structure findings for Cursor: problem statement, MVP scope, success metrics.
+{% endstep %}
+{% endstepper %}
 
-```
-Based on the user voice research you did, organize findings:
+Don't overthink it. Four hours of focused discovery beats weeks of analysis paralysis. Build fast, learn fast.
 
-1. **User segments** (who has this problem?)
-   - Segment 1: [Description, example quotes]
-   - Segment 2: [Description, example quotes]
-   - Which segment is most underserved?
+### If you have a validated PRD:
 
-2. **Pain point themes** (ranked by frequency)
-   - Theme 1: [Description, frequency, vivid quotes]
-   - Theme 2: [Description, frequency, vivid quotes]
-   - Theme 3: [Description, frequency, vivid quotes]
+Start with [Part 2: Knowledge Handoff](innovation-playbook/part_2_knowledge_handoff.md)
 
-3. **Quantified impact** (from user posts)
-   - Time wasted: [X hours per week/month from posts]
-   - Money lost: [Y dollars from posts]
-   - Specific consequences: [examples from users]
+Create the knowledge package:
 
-4. **Why current solutions fail**
-   - Solution 1: [Why users reject it, quotes]
-   - Solution 2: [Why users reject it, quotes]
+* PRD.md (use the template)
+* CONTEXT.md (domain knowledge)
+* CONSTRAINTS.md (technical limits)
+* .cursorrules (coding patterns)
 
-5. **Our opportunity**
-   - What gap can we fill that existing solutions don't?
-   - Which user segment should we target first?
-   - What's the minimum viable solution?
+Then proceed to [Part 3: Infrastructure Setup](innovation-playbook/part_3_infrastructure_setup.md).
 
-**Decision**: Build / Don't build / Need more data
-**Reasoning**: [Based on voice of user data]
+### If you're mid-project and need to pivot:
 
-Format as markdown.
-```
+Start with [Part 4: Iteration and Scaling](innovation-playbook/part_4_iteration_and_scaling.md)
 
----
+Follow the pivot framework:
 
-## Step 3: Generate PRD
+{% stepper %}
+{% step %}
+### Identify what to keep
 
-**Use in**: Any AI tool
+Preserve validated learnings and data.
+{% endstep %}
 
-```
-I've completed discovery research for my product idea. Help me write a PRD (Product Requirements Document) that an AI coding assistant (Cursor) can use to build the MVP.
+{% step %}
+### Update documentation first
 
-**My Discovery Work**:
+Reflect decisions in PRD, CONTEXT, and ARCHITECTURE docs.
+{% endstep %}
 
-[PASTE YOUR MARKET RESEARCH FROM STEP 0]
+{% step %}
+### Feature flag the pivot
 
-[PASTE YOUR VALIDATION WORK FROM STEP 2 - interviews/research/experiment]
+Deploy changes behind flags to control exposure.
+{% endstep %}
 
-**Instructions**:
+{% step %}
+### Measure the pivot
 
-Using this template, generate a complete PRD:
+Track metrics to validate the new direction.
+{% endstep %}
+{% endstepper %}
 
-# [Product Name] - Product Requirements Document
+***
 
-**Last Updated**: [Date]  
-**Status**: Discovery Complete / Ready for Development
+## Supporting Documents
 
----
+### Cursor Enhancement
 
-## Product Overview
+[Appendix A: Mission-Based Organization](supporting-docs/appendix_a_cursor_missions.md) - Advanced Cursor setup for large projects (10+ features)
 
-**One-line description**:
-[Specific: what it does + who uses it]
+[Appendix B: MCP Configuration](supporting-docs/appendix_b_mcp_configuration.md) - Configure Model Context Protocol for Docker, GitHub, databases, and enhanced reasoning
 
-**Problem we're solving**:
-[From discovery: specific user segment, specific problem, quantified impact]
+### Quick Reference
 
-**Solution approach**:
-[How this solves the problem - high level, not implementation]
+[Discovery Prompts Quick Reference](supporting-docs/) - All AI prompts in one place for rapid copy-paste
 
-**Evidence**:
-[What you learned - cite specific findings]
-- User interviews: "[key finding with quote]"
-- Market research: "[competitive gap we're filling]"
-- Technical validation: "[feasibility confirmed]"
+***
 
----
+## Real-World Applications
 
-## Target Users
+### Aviation (Air Canada, 2010-2018)
 
-**Primary persona**:
-- Who: [Specific segment from research, NOT "users"]
-- Job-to-be-done: [What outcome they want]
-- Current workflow: [How they do this today from interviews]
-- Pain point: [Specific problem from research, with time/cost impact]
-- Quote: "[Verbatim user quote that captures pain]"
+* Analyzed 697 pilot complaints to understand real needs
+* Built offline iPad training platform
+* Delivered $1.5M annual savings, 70% friction reduction
 
----
+### Defense (RaceRocks, 2018-2024)
 
-## MVP Scope
+* Developed world's first RAS naval simulator
+* Zero-tolerance reliability requirements
+* Delivered $20M+ operational savings
 
-### Core Features (Must Have for V1)
+### Enterprise Software (Swift Racks, 2024-Present)
 
-**Feature 1: [Name based on highest-value pain point]**
-- What it does: [Specific capability]
-- User value: [Time saved / problem solved - quantified]
-- Success metric: [How we know it works]
-- Priority: P0 (launch blocker)
+* Leading AI platform development ([Swift CNS](https://swiftcns.ai/), [TakeCost,](https://takecost.com) [EdPal](https://edpal.ca/), [PaySight](https://paysight.ca/), LearnMate AI)
+* 85% efficiency improvements through AI
+* $1.8M recurring revenue growth
 
-**Feature 2: [Name based on second pain point]**
-- What it does: [Specific capability]
-- User value: [Why this matters]
-- Success metric: [How we measure]
-- Priority: P1 (launch blocker)
+### Education (Schulich School of Business)
 
-[Add 1-2 more core features if validated in research]
+* Teaching product management frameworks
+* Students report 85%+ industry placement rate
+* Frameworks used in real-world job interviews
 
-### Explicitly Out of Scope (V2+)
+### Personal Projects
 
-- [Feature mentioned by users but not validated enough]
-  - Why deferred: [Not critical for MVP / complexity too high / can validate after]
+Beyond professional work, I build products that solve problems I care about:
 
----
+* **AthleteAtlas** - Youth hockey development platform. Unified ecosystem connecting coaches, trainers, parents, and athletes through transparent progress tracking and dual-layer assessments.
+* **CoachCedar** - Peronalized fitness coach combining industry expertise with personalized training plans. Validates the intersection of AI and human coaching wisdom.
+* **Edison** - Experimentation and insights platform. Single source of truth for team experiments.
+* **mwm chatbot** - A Fun personal AI assistant trained on my career corpus. Demonstrates RAG implementation; stood up in 48 hrs.
 
-## User Flows
+These projects let me experiment with emerging technologies (multi-agent AI, RAG, computer vision) while solving real problems. Building in public keeps me connected to users and validates that the frameworks I teach actually work outside enterprise contexts. **Product development isn't just my profession—it's how I learn, experiment, and stay sharp.**
 
-**Primary flow** (happy path):
-1. User starts at [entry point]
-2. User [action]
-3. System [behavior]
-4. User sees [outcome]
-5. Success state: [What indicates they got value]
+* [AthleteAtlas](https://athleteatlas.io), [CoachCedar](https://coachcedar.com), [mwm chatbot](https://askmwm.web.app/), [Edison](https://edison-mvp.firebaseapp.com/)
 
-**Edge cases**:
-- If [error scenario] → System [behavior], User sees [message]
+***
 
----
+## Key Lessons Learned
 
-## Technical Requirements
+* **Keep your ear to the ground, listen to your end-users -** I logged 697 complaints personally at Air Canada because summaries hide truth. Dashboards aggregate the noise away, but real insights live in what users actually write. Keep your finger on the pulse.
+* **Validate all assumptions -** We all have blinders. Talk to users. Go outside your organization. Your assumptions are probably wrong. Find out how wrong, adjust course.
+* **Speed of insight drives speed of execution -** Choose rapid validation over exhaustive research. Most projects need 4-8 hours of focused discovery, not weeks. The faster you gather data, the faster you can move.&#x20;
+* **Fail fast, learn faster -** TakeCost spent 2 years building for accuracy when users wanted speed. EdPal built VR when users needed AI lesson planning. Both pivoted successfully because we caught mistakes early and adjusted. Failure is fine. Slow failure is expensive.
+* **Discipline from regulated industries transfers everywhere -** Zero-tolerance reliability in aviation and defense creates habits that serve you in fast-moving projects. Build for longevity from day one—it's easier than retrofitting later.
+* **Serve outcomes, not technology -** I've recommended against AI when simpler solutions delivered better value. The technology should serve the outcome, not the other way around. Customer-first thinking always wins.
+* **Clarity enables scale -** If you can't explain a framework in one class session, it won't get used. Complexity doesn't scale. Simplicity does.
+* **Build for scale on day one -** Standardized infrastructure, TypeScript strict mode, clear architecture from the start. Retrofitting discipline is 10x harder and slower than starting with it.
 
-**Platform**: [Web / Mobile / Both - based on user workflow from research]
+***
 
-**Performance requirements**:
-- [Metric]: [Threshold from user expectations]
-- [Metric]: [Threshold]
+## When to Deviate
 
-**Third-party services** (if known from technical validation):
-- [API/Service]: [Purpose, why we need it]
+This playbook provides frameworks, not rules. Deviate when:
 
-**Compliance** (if applicable from market research):
-- [Standard]: [Specific requirements]
+* Client has existing infrastructure - Match their stack and conventions
+* Regulated industry requires specific tools - Use approved vendors
+* Performance constraints - Optimize for specific bottlenecks
+* Team expertise - Leverage team's strengths over my preferences
 
----
+The principle holds: Standardize what you can. Deviate deliberately, not accidentally.
 
-## Success Metrics
+***
 
-**Primary metric** (North Star):
-[Main indicator that product solves the problem]
+## Contributing
 
-**How we'll measure**:
-- [Input metric]: [Target] - [How measured]
-- [Adoption metric]: [Target] - [How measured]
-- [Value metric]: [Target] - [How measured]
+This playbook evolves as I learn. Current version reflects patterns that worked in aviation (8 years), defense (6 years), and enterprise software (current).
 
-**Decision point**: [When we evaluate MVP success]
+Updates happen when:
 
----
+* New patterns prove valuable across multiple projects
+* Technology shifts require updated frameworks
+* Student feedback reveals unclear sections
 
-## Next Steps
+***
 
-1. Knowledge handoff: Create CONTEXT.md, CONSTRAINTS.md, .cursorrules
-2. Infrastructure setup in Cursor (4-6 hours)
-3. Build MVP features (based on prioritization above)
-4. Beta test with [N] users from research
-5. Measure success metrics
-6. Iterate or pivot based on data
+## About Me
 
----
+I'm a product leader with 15+ years shipping software across aviation, defense, and enterprise SaaS. I teach Product Management at Schulich School of Business.
 
-Based on the discovery data I provided:
-- Fill in all brackets with specific information
-- Be concrete, not generic
-- Quote actual user findings where relevant
-- Make technical requirements specific (not "fast" but "<2s load time")
-- Ensure MVP scope is minimal but solves the core validated problem
-```
+Technical fluency: AWS Bedrock, Claude Sonnet multi-agent orchestration, RAG implementation, computer vision, Spring Boot, Next.js, React
 
----
+Strategic judgment: Build vs buy frameworks, compliance architecture, governance frameworks, cross-functional coalition building
 
-## Usage Tips
+Contact: [LinkedIn](https://linkedin.com/in/mattmayer) | mattmayer@hotmail.com
 
-1. **Always start with Step 0** - Market research orients everything else
-2. **Copy entire prompts** - Don't skip sections, they're designed to get complete output
-3. **Replace ALL [BRACKETED] sections** with your specifics before pasting
-4. **Iterate if needed** - If output isn't specific enough, ask AI to "be more concrete" or "add more detail to [section]"
-5. **Use web search** - For Steps 0, 1B especially, make sure your AI tool has web access enabled
-6. **Save outputs** - Keep the AI's responses organized (market research, synthesis, PRD) for reference
+***
 
----
+## License
 
-## Time Budget
+This playbook is provided as-is for educational and professional use. Adapt it to your context.
 
-- Step 0: 30-60 min (market research)
-- Step 1: 30 min (pick method + generate prompt)
-- Step 2: 2-4 hours (execute + synthesize)
-- Step 3: 1-2 hours (generate PRD + refine)
+***
 
-**Total: 4-8 hours from idea to structured PRD**
+_Last modified: February 2026_

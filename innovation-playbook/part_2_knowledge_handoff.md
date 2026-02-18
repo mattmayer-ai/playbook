@@ -1,18 +1,19 @@
-# Part 2: Knowledge Handoff (Claude → Cursor)
+# Part 2: Knowledge Handoff
 
 **Purpose**: Package discovery output from Claude into structured format that Cursor can consume effectively.
 
 **The Gap**: Claude is conversational and iterative. Cursor is code-focused and file-based. The handoff is where most context gets lost.
 
----
+***
 
 ## Why the Handoff Matters
 
 You've spent 4-8 weeks in discovery. You have:
-- User research synthesis
-- Validated assumptions
-- Experiment results
-- A clear PRD
+
+* User research synthesis
+* Validated assumptions
+* Experiment results
+* A clear PRD
 
 Now you need Cursor to understand all of this without re-explaining it every time you ask for a feature.
 
@@ -20,7 +21,7 @@ Now you need Cursor to understand all of this without re-explaining it every tim
 
 **The solution**: Create a project knowledge base that Cursor can search and reference.
 
----
+***
 
 ## What Cursor Needs to Know
 
@@ -37,19 +38,21 @@ Without this, Cursor makes generic choices that don't match your requirements.
 ### Example: The Difference Context Makes
 
 **Without context**:
+
 ```
 User: "Create a user profile screen"
 Cursor: [Generates generic form with name, email, photo upload]
 ```
 
 **With context** (from PRD + constraints):
+
 ```
 User: "Create a user profile screen"
 Cursor: [References PRD, sees healthcare compliance requirement]
 Cursor: [Generates form with consent toggles, audit logging, no PHI in error messages]
 ```
 
----
+***
 
 ## How to Structure Context for Cursor
 
@@ -69,7 +72,7 @@ project-root/
 └── README.md                     # Quick reference
 ```
 
----
+***
 
 ## PRD.md: Product Requirements
 
@@ -77,7 +80,7 @@ This is the main reference document. Structure it for AI consumption—clear sec
 
 ### PRD Template for Cursor
 
-```markdown
+````markdown
 # [Product Name] - Product Requirements Document
 
 **Last Updated**: [Date]  
@@ -214,65 +217,72 @@ interface EntityName {
   updatedAt: Date;
   createdBy: string;
 }
-```
+````
 
 **Relationships**:
-- [Entity A] → [Entity B]: [Relationship type - 1:1, 1:many, many:many]
 
----
+* \[Entity A] → \[Entity B]: \[Relationship type - 1:1, 1:many, many:many]
+
+***
 
 ## Success Metrics
 
-**North Star Metric**: [Primary indicator of product success]
+**North Star Metric**: \[Primary indicator of product success]
 
 **Input Metrics** (leading indicators):
-- **[Metric]**: [Target] - [How measured]
-- **[Metric]**: [Target] - [How measured]
+
+* **\[Metric]**: \[Target] - \[How measured]
+* **\[Metric]**: \[Target] - \[How measured]
 
 **Output Metrics** (lagging indicators):
-- **[Metric]**: [Target] - [How measured]
-- **[Metric]**: [Target] - [How measured]
+
+* **\[Metric]**: \[Target] - \[How measured]
+* **\[Metric]**: \[Target] - \[How measured]
 
 **Instrumentation**:
-- [Analytics platform]
-- [Key events to track]
 
----
+* \[Analytics platform]
+* \[Key events to track]
+
+***
 
 ## Timeline and Milestones
 
 **Phase 1: MVP** (Weeks 1-8)
-- Week 1-2: Setup, core data models
-- Week 3-5: Feature development
-- Week 6-7: Testing, refinement
-- Week 8: Staging deployment
+
+* Week 1-2: Setup, core data models
+* Week 3-5: Feature development
+* Week 6-7: Testing, refinement
+* Week 8: Staging deployment
 
 **Decision Point** (Week 8):
-- Criteria for beta: [Metrics/conditions]
-- Go/No-go based on: [Specific thresholds]
+
+* Criteria for beta: \[Metrics/conditions]
+* Go/No-go based on: \[Specific thresholds]
 
 **Phase 2: Beta** (Weeks 9-12)
-- [Milestones and decision points]
 
----
+* \[Milestones and decision points]
+
+***
 
 ## Open Questions
 
-1. **[Question]**
-   - Context: [Why this matters]
-   - Decision needed by: [Date]
-   - Blocking: [Yes/No]
+1. **\[Question]**
+   * Context: \[Why this matters]
+   * Decision needed by: \[Date]
+   * Blocking: \[Yes/No]
+2. **\[Question]**
 
-2. **[Question]**
-
----
+***
 
 ## Appendix
 
-**User research**: See [USER_RESEARCH.md](./USER_RESEARCH.md)  
-**Technical constraints**: See [CONSTRAINTS.md](./CONSTRAINTS.md)  
-**Architecture decisions**: See [ARCHITECTURE.md](./ARCHITECTURE.md)
-```
+**User research**: See [USER\_RESEARCH.md](../USER_RESEARCH.md)\
+**Technical constraints**: See [CONSTRAINTS.md](../CONSTRAINTS.md)\
+**Architecture decisions**: See [ARCHITECTURE.md](../ARCHITECTURE.md)
+
+````
 
 ---
 
@@ -378,9 +388,9 @@ This file provides domain-specific context that Cursor can't infer from the PRD 
 |---------|-----------|------------------------|
 | [ABC] | [Full name] | [How we use it] |
 | [DEF] | [Full name] | [How we use it] |
-```
+````
 
----
+***
 
 ## CONSTRAINTS.md: Technical and Compliance Limits
 
@@ -515,7 +525,7 @@ Hard requirements that can't be negotiated. Cursor needs to know what's non-nego
 - **On-call**: [Who responds to incidents]
 ```
 
----
+***
 
 ## ARCHITECTURE.md: Key Technical Decisions
 
@@ -533,11 +543,11 @@ Document architectural choices and reasoning. When Cursor asks "why is this stru
 ## High-Level Architecture
 
 ```
-[ASCII diagram or description of system components]
 
-User → [Frontend] → [API] → [Database]
-                   ↓
-              [External Services]
+\[ASCII diagram or description of system components]
+
+User → \[Frontend] → \[API] → \[Database] ↓ \[External Services]
+
 ```
 
 **Components**:
@@ -726,7 +736,7 @@ User → [Frontend] → [API] → [Database]
 - **When we'll need [X]**: [Condition, solution]
 ```
 
----
+***
 
 ## .cursorrules: Cursor-Specific Patterns
 
@@ -803,7 +813,7 @@ Example for healthcare:
 - Update ARCHITECTURE.md when making architectural changes
 ```
 
----
+***
 
 ## Handoff Checklist
 
@@ -849,13 +859,14 @@ Test Cursor's understanding with these prompts:
 If Cursor can't answer these from your docs, add more context.
 ```
 
----
+***
 
 ## Example: Full Handoff Package
 
 ### Minimal Example (TakeCost)
 
 **docs/PRD.md**:
+
 ```markdown
 # TakeCost AutoTake - Product Requirements
 
@@ -890,6 +901,7 @@ If Cursor can't answer these from your docs, add more context.
 ```
 
 **docs/CONSTRAINTS.md**:
+
 ```markdown
 # TakeCost AutoTake - Constraints
 
@@ -909,6 +921,7 @@ If Cursor can't answer these from your docs, add more context.
 ```
 
 **.cursorrules**:
+
 ```
 # TakeCost AutoTake - Development Rules
 
@@ -937,11 +950,12 @@ Stack: React + TypeScript, AWS Bedrock (Claude), Scale AI (CV), PostgreSQL
 - Mock Scale AI and Bedrock in tests
 ```
 
----
+***
 
 ## Summary: Knowledge Handoff
 
 **What you create**:
+
 1. **PRD.md** - Product requirements (structured for AI)
 2. **CONTEXT.md** - Domain knowledge and background
 3. **CONSTRAINTS.md** - Non-negotiable requirements
@@ -952,6 +966,6 @@ Stack: React + TypeScript, AWS Bedrock (Claude), Scale AI (CV), PostgreSQL
 
 **Why it matters**: Cursor is only as effective as the context you provide. Good handoff means Cursor makes correct assumptions about architecture, security, compliance, and user needs.
 
----
+***
 
-**Next**: [Part 3: Infrastructure Setup in Cursor](./Part_3_Infrastructure_Setup.md)
+**Next**: [Part 3: Infrastructure Setup in Cursor](part_3_infrastructure_setup.md)

@@ -1,22 +1,23 @@
-# Part 3: Infrastructure Setup in Cursor
+# Part 3: Infrastructure Setup
 
 **Purpose**: Rapidly configure projects for scalable development using the context from knowledge handoff.
 
 **Principle**: Standardize what you can. Deviate deliberately, not accidentally.
 
----
+***
 
 ## Why Infrastructure Setup Comes After Discovery
 
 You have:
-- Validated problem statement
-- User research insights
-- Technical constraints documented
-- PRD structured for Cursor
+
+* Validated problem statement
+* User research insights
+* Technical constraints documented
+* PRD structured for Cursor
 
 Now translate requirements into working infrastructure. This isn't "make it perfect"—it's "make it right for this specific product."
 
----
+***
 
 ## Decision Frameworks (Not Prescriptions)
 
@@ -27,6 +28,7 @@ Every project is different. These frameworks help you choose the right stack for
 **Question**: Web, mobile, or both?
 
 **Decision tree**:
+
 ```
 Is primary use case on-the-go (location-based, camera, push notifications)?
 ├─ Yes → Mobile-first
@@ -36,20 +38,23 @@ Is primary use case on-the-go (location-based, camera, push notifications)?
 ```
 
 **From your constraints**:
-- Check `CONSTRAINTS.md` → Platform section
-- Check `PRD.md` → User flows (do they need native capabilities?)
+
+* Check `CONSTRAINTS.md` → Platform section
+* Check `PRD.md` → User flows (do they need native capabilities?)
 
 **Example (TakeCost)**:
-- Primary user: Contractors in office
-- Need: Upload PDFs, review estimates
-- Decision: Web-first (Next.js for SEO)
-- Defer: Mobile app until validated web demand
+
+* Primary user: Contractors in office
+* Need: Upload PDFs, review estimates
+* Decision: Web-first (Next.js for SEO)
+* Defer: Mobile app until validated web demand
 
 ### Framework 2: Backend Choice
 
 **Question**: BaaS or custom backend?
 
 **Decision tree**:
+
 ```
 Do you need rapid MVP with auth + database + files?
 ├─ Yes → Consider BaaS
@@ -62,21 +67,24 @@ Do you need rapid MVP with auth + database + files?
 ```
 
 **From your constraints**:
-- Check `CONSTRAINTS.md` → Infrastructure section (any restrictions?)
-- Check `PRD.md` → Complexity of business logic
-- Check `PRD.md` → Timeline (MVP in 4 weeks? → BaaS)
+
+* Check `CONSTRAINTS.md` → Infrastructure section (any restrictions?)
+* Check `PRD.md` → Complexity of business logic
+* Check `PRD.md` → Timeline (MVP in 4 weeks? → BaaS)
 
 **Example (CNS Platform)**:
-- Complex: Multi-agent orchestration, experiment management
-- Timeline: 8 weeks for MVP
-- Decision: Custom backend (Node + TypeScript + AWS Bedrock)
-- BaaS wouldn't handle multi-agent complexity
+
+* Complex: Multi-agent orchestration, experiment management
+* Timeline: 8 weeks for MVP
+* Decision: Custom backend (Node + TypeScript + AWS Bedrock)
+* BaaS wouldn't handle multi-agent complexity
 
 ### Framework 3: Database Choice
 
 **Question**: What database fits the data model?
 
 **Decision tree**:
+
 ```
 What's your data structure?
 ├─ Nested documents, flexible schema → Document DB (MongoDB, Firestore)
@@ -86,21 +94,24 @@ What's your data structure?
 ```
 
 **From your constraints**:
-- Check `PRD.md` → Data Model section
-- Check `CONSTRAINTS.md` → Data residency requirements
-- Check `PRD.md` → Query patterns (read-heavy? write-heavy?)
+
+* Check `PRD.md` → Data Model section
+* Check `CONSTRAINTS.md` → Data residency requirements
+* Check `PRD.md` → Query patterns (read-heavy? write-heavy?)
 
 **Example (Air Canada iPad Training)**:
-- Data: Users, courses, progress (relational)
-- Requirement: Offline-first, sync when online
-- Decision: SQLite (local) + PostgreSQL (server)
-- Why: SQLite handles offline, PostgreSQL for server sync
+
+* Data: Users, courses, progress (relational)
+* Requirement: Offline-first, sync when online
+* Decision: SQLite (local) + PostgreSQL (server)
+* Why: SQLite handles offline, PostgreSQL for server sync
 
 ### Framework 4: State Management
 
 **Question**: How to handle data fetching and global state?
 
 **Decision tree**:
+
 ```
 Server state (API data):
 └─ React Query or SWR (automatic caching, refetching, loading states)
@@ -112,19 +123,22 @@ Client state (UI state):
 ```
 
 **From your constraints**:
-- Check `PRD.md` → How much data comes from API vs local?
-- Check `PRD.md` → Complexity of UI state
+
+* Check `PRD.md` → How much data comes from API vs local?
+* Check `PRD.md` → Complexity of UI state
 
 **Example (EdPal)**:
-- Server state: Lesson plans, user data (React Query)
-- Client state: Current subject filter, sidebar open (Zustand)
-- Why: Separate concerns, don't mix API cache with UI state
+
+* Server state: Lesson plans, user data (React Query)
+* Client state: Current subject filter, sidebar open (Zustand)
+* Why: Separate concerns, don't mix API cache with UI state
 
 ### Framework 5: Compliance Requirements
 
 **Question**: What security/compliance patterns do we need?
 
 **Decision tree**:
+
 ```
 Is this a regulated industry?
 ├─ Healthcare → HIPAA patterns
@@ -143,10 +157,12 @@ Is this a regulated industry?
 ```
 
 **From your constraints**:
-- Check `CONSTRAINTS.md` → Compliance section
-- Check `CONTEXT.md` → Industry context
+
+* Check `CONSTRAINTS.md` → Compliance section
+* Check `CONTEXT.md` → Industry context
 
 **Example (Healthcare product)**:
+
 ```typescript
 // Audit logging pattern
 async function logDataAccess(
@@ -170,7 +186,7 @@ await logDataAccess(user.id, 'MedicalRecord', recordId, 'read');
 const record = await fetchMedicalRecord(recordId);
 ```
 
----
+***
 
 ## Standard Setup Sequence
 
@@ -192,12 +208,13 @@ git commit -m "chore: initialize repository"
 ```
 
 **What goes in .gitignore**:
-- `node_modules/`
-- `.env` (but not `env.template`)
-- Build outputs (`dist/`, `build/`, `.next/`)
-- IDE files (`.vscode/`, `.idea/`)
-- OS files (`.DS_Store`)
-- Stack-specific (e.g., React Native: `android/app/build/`, `ios/Pods/`)
+
+* `node_modules/`
+* `.env` (but not `env.template`)
+* Build outputs (`dist/`, `build/`, `.next/`)
+* IDE files (`.vscode/`, `.idea/`)
+* OS files (`.DS_Store`)
+* Stack-specific (e.g., React Native: `android/app/build/`, `ios/Pods/`)
 
 ### Step 2: TypeScript Configuration
 
@@ -210,6 +227,7 @@ npx tsc --init
 ```
 
 **Standard tsconfig.json**:
+
 ```json
 {
   "compilerOptions": {
@@ -259,6 +277,7 @@ npm install -D eslint-plugin-react eslint-plugin-react-hooks
 ```
 
 **.eslintrc.js**:
+
 ```javascript
 module.exports = {
   parser: '@typescript-eslint/parser',
@@ -283,6 +302,7 @@ module.exports = {
 ```
 
 **.prettierrc.js**:
+
 ```javascript
 module.exports = {
   semi: true,
@@ -325,10 +345,12 @@ project-root/
 ```
 
 **When to deviate**:
-- **Feature-based structure**: When single feature dominates codebase, group by feature instead
-- **Monorepo**: When sharing code across multiple apps, use packages/
+
+* **Feature-based structure**: When single feature dominates codebase, group by feature instead
+* **Monorepo**: When sharing code across multiple apps, use packages/
 
 **Example feature-based structure**:
+
 ```
 src/
 ├── features/
@@ -351,6 +373,7 @@ src/
 Create `env.template` (committed) and `.env` (gitignored).
 
 **env.template**:
+
 ```bash
 # API Configuration
 API_BASE_URL=https://api.example.com
@@ -375,6 +398,7 @@ PORT=3000
 ```
 
 **Document in README**:
+
 ```markdown
 ## Environment Setup
 
@@ -430,6 +454,7 @@ npm install -D @testing-library/react @testing-library/jest-dom
 ```
 
 **jest.config.js**:
+
 ```javascript
 module.exports = {
   preset: 'ts-jest',
@@ -447,6 +472,7 @@ module.exports = {
 ```
 
 **jest.setup.js**:
+
 ```javascript
 // Mock environment variables
 process.env = {
@@ -464,7 +490,7 @@ jest.mock('firebase/app', () => ({
 global.fetch = jest.fn();
 ```
 
----
+***
 
 ## Compliance Patterns
 
@@ -645,6 +671,7 @@ if (!await checkConsent(userId, ConsentType.DATA_COLLECTION)) {
 ### Firebase: Security Rules (Start Closed)
 
 **firestore.rules** (start restrictive, open deliberately):
+
 ```javascript
 rules_version = '2';
 service cloud.firestore {
@@ -674,6 +701,7 @@ service cloud.firestore {
 ```
 
 **storage.rules**:
+
 ```javascript
 rules_version = '2';
 service firebase.storage {
@@ -696,13 +724,13 @@ service firebase.storage {
 }
 ```
 
----
+***
 
 ## Documentation Templates
 
 ### README.md Structure
 
-```markdown
+````markdown
 # [Product Name]
 
 [One-line description from PRD]
@@ -730,28 +758,29 @@ service firebase.storage {
    ```bash
    git clone [repo-url]
    cd [project-name]
-   ```
+````
 
-2. Install dependencies
-   ```bash
-   npm install
-   ```
+2.  Install dependencies
 
-3. Set up environment variables
-   ```bash
-   cp env.template .env
-   # Edit .env with your values (see team wiki for credentials)
-   ```
+    ```bash
+    npm install
+    ```
+3.  Set up environment variables
 
-4. Run development server
-   ```bash
-   npm run dev
-   ```
+    ```bash
+    cp env.template .env
+    # Edit .env with your values (see team wiki for credentials)
+    ```
+4.  Run development server
 
-5. Run tests
-   ```bash
-   npm test
-   ```
+    ```bash
+    npm run dev
+    ```
+5.  Run tests
+
+    ```bash
+    npm test
+    ```
 
 ## Project Structure
 
@@ -767,10 +796,10 @@ src/
 
 ## Key Documentation
 
-- [PRD](./docs/PRD.md) - Product requirements and scope
-- [Architecture](./docs/ARCHITECTURE.md) - Technical decisions
-- [Constraints](./docs/CONSTRAINTS.md) - Technical and compliance requirements
-- [Context](./docs/CONTEXT.md) - Domain knowledge
+* [PRD](../docs/PRD.md) - Product requirements and scope
+* [Architecture](../docs/ARCHITECTURE.md) - Technical decisions
+* [Constraints](../docs/CONSTRAINTS.md) - Technical and compliance requirements
+* [Context](../docs/CONTEXT.md) - Domain knowledge
 
 ## Development Workflow
 
@@ -783,15 +812,16 @@ src/
 
 ## Deployment
 
-[Instructions for deploying to staging and production]
+\[Instructions for deploying to staging and production]
 
 ## Contributing
 
-See [.cursorrules](./.cursorrules) for coding standards and patterns.
+See [.cursorrules](../.cursorrules/) for coding standards and patterns.
 
 ## License
 
-[License type]
+\[License type]
+
 ```
 
 ---
@@ -825,3 +855,4 @@ See [.cursorrules](./.cursorrules) for coding standards and patterns.
 ---
 
 **Next**: [Part 4: Iteration and Scaling](./Part_4_Iteration_and_Scaling.md)
+```
