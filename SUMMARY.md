@@ -7,7 +7,7 @@
 * [Part 2: PRD Development](innovation-playbook/part-2-prd-development.md)
 * [Part 3: Knowledge Handoff](innovation-playbook/part_2_knowledge_handoff.md)
 * [Part 4: Infrastructure Setup](innovation-playbook/part_3_infrastructure_setup.md)
-* [Part 4: Iteration and Scaling](innovation-playbook/part_4_iteration_and_scaling.md)
+* [Part 5: Iteration and Scaling](innovation-playbook/part_4_iteration_and_scaling.md)
 
 ## Supporting Docs
 
