@@ -1,46 +1,44 @@
-# Part 1: Rapid Discovery
+# Part 1: Discovery and Synthesis
 
-**Purpose**: Do just enough discovery to write a solid PRD before coding. Use any AI tool (Claude, ChatGPT, Perplexity, etc.) with the copy-paste prompts provided.
+**Purpose**: Validate problems and synthesize insights before writing PRD.
 
-**Time**: 4-8 hours total
+**Time**: 4-7 hours total
 
-**Output**: Structured PRD ready for Cursor consumption
+**Output**: Discovery Insights Report (assumptions, hypothesis, insights, problem reframe, recommended direction)
 
-**What's included**: Ready-to-use prompts for each step—just fill in your specifics and paste into your AI tool of choice.
-
-***
-
-### Why Any Discovery At All
-
-You need enough context to write a PRD that Cursor can execute against. Not full validation—that comes after MVP. Just enough to avoid building something obviously wrong.
-
-**Bad**: "Build a productivity app" → Cursor has no direction\
-**Good**: "Build a lesson planning tool that reduces teacher prep time from 2 hours to 15 minutes by automating standards alignment"
-
-The difference is 4-8 hours of focused discovery with AI assistance.
+**What's included**: Copy-paste prompts for each step—just fill in your specifics and paste into any AI tool (Claude, ChatGPT, Perplexity, etc.).
 
 ***
 
-### The Rapid Discovery Process
+### Why Discovery and Synthesis
 
-Four steps, 4-8 hours total:
+You need evidence-backed direction before writing a PRD. Not full validation—that comes after MVP. Just enough to avoid building something obviously wrong.
 
-1. **AI-Assisted Market Research** (30-60 min) - ALWAYS start here - understand the landscape
+**Without this**: "Build a productivity app" → No direction, just assumptions\
+**With this**: "Contractors lose bids due to slow estimation (15/15 interviews confirmed), not pricing errors. Build speed-first tool targeting <2 hour estimates vs. 8 hour baseline."
+
+The difference is 4-7 hours of focused discovery with AI assistance.
+
+***
+
+### The Process
+
+Four steps, 4-7 hours total:
+
+1. **AI-Assisted Market Research** (30-60 min) - ALWAYS start here
 2. **Pick Your Validation Method** (30 min) - Choose based on what market research revealed
-3. **Execute Discovery** (2-4 hours) - Follow your chosen method with AI assistance
-4. **Generate PRD** (1-2 hours) - AI transforms findings into structured PRD
+3. **Execute Discovery** (2-4 hours) - Follow your chosen method
+4. **Synthesis & Insights** (1-2 hours) - Transform raw data into direction
 
-**Copy-paste prompts provided for every step.**
-
-**Not included**: Full assumption mapping, extensive experiments, 697-complaint analysis. Those are for post-MVP validation.
+**Critical**: Step 3 is where product thinking happens. Raw research without synthesis is just data collection.
 
 ***
 
-### AI-Assisted Market Research (10-30 min)
+### Step 0: AI-Assisted Market Research (30-60 min)
 
 **START HERE EVERY TIME.** Before you pick a validation method, get AI to map the landscape.
 
-This step uses web search heavily. Use Claude with web search, ChatGPT with browsing, or Perplexity.
+Use Claude with web search, ChatGPT with browsing, or Perplexity.
 
 #### What You're Learning
 
@@ -50,7 +48,7 @@ This step uses web search heavily. Use Claude with web search, ChatGPT with brow
 * What gaps exist?
 * Are there regulatory constraints?
 
-#### Copy-Paste Prompt (use in Claude, ChatGPT, etc.)
+#### Copy-Paste Prompt
 
 ```
 I have an idea for: [YOUR IDEA - 1-2 sentences]
@@ -90,65 +88,21 @@ Synthesize findings into:
 Format as markdown with clear sections.
 ```
 
-#### Example Output You'll Get
-
-```
-## Market Research: Lesson Planning Tools
-
-### Existing Solutions
-
-| Tool | Pricing | Strengths | User Complaints | Our Gap |
-|------|---------|-----------|-----------------|---------|
-| Planbook | $12/mo | Simple, clean UI | "Takes too long to align to standards" | Automated standards alignment |
-| Common Curriculum | $15/mo | Standards library | "Not personalized to my teaching style" | AI personalization |
-| Teachers Pay Teachers | Free-$10/item | Huge content library | "Hit or miss quality, takes time to find good stuff" | AI-curated + quality control |
-
-### Common User Complaints (from Reddit r/Teachers, G2)
-- "Still takes 1-2 hours per lesson to align to standards"
-- "Can't easily adapt lessons for different learning levels"
-- "Too many clicks to get to what I need"
-
-### Identified Gaps
-1. No tool automates standards alignment (all manual)
-2. No AI personalization based on teaching style
-3. No tools optimize for time reduction (focus on content quality)
-
-### Regulatory Constraints
-- FERPA compliance (if storing student data)
-- District approval processes vary
-
-### Pricing Benchmark
-- Entry: $10-15/month individual
-- School/district: $500-2000/year
-- Freemium possible for user acquisition
-```
-
-#### What This Tells You
-
-After 10-30 minutes, you know:
-
-* **Whether your idea already exists** (if yes, what gap you'll fill)
-* **What users are willing to pay** (pricing benchmark)
-* **What the real pain points are** (from complaints, not assumptions)
-* **What validation method to use next** (interviews? experiment? problem research?)
-
 #### Decision Point
 
 Based on market research:
 
-**If competitors exist but users complain** → Proceed to Step 1 (pick validation method)\
-**If market is saturated and users are happy** → Consider different idea\
-**If no competitors exist** → Validate the problem is real (could be no competitors because no one wants this)
+* **Competitors exist but users complain** → Proceed to Step 1
+* **Market saturated, users happy** → Consider different idea
+* **No competitors exist** → Validate the problem is real
 
 ***
 
 ### Step 1: Pick Your Validation Method (30 min)
 
-Now that you understand the market, choose ONE validation method based on what you're uncertain about.
-
 Choose ONE based on what you're uncertain about.
 
-#### Option A: User Interviews (if you have access to users)
+#### Option A: User Interviews
 
 **Use when**: You have a problem hypothesis but don't know if it's painful enough
 
@@ -165,48 +119,30 @@ Choose ONE based on what you're uncertain about.
 ```
 I'm building [YOUR PRODUCT IDEA - 1-2 sentences].
 
-Target users: [WHO - e.g., "elementary teachers", "construction contractors", "healthcare administrators"]
-
-Problem I think they have: [PROBLEM - e.g., "spend too much time on lesson planning", "lose bids due to slow estimation"]
+Target users: [WHO - e.g., "elementary teachers", "construction contractors"]
+Problem I think they have: [PROBLEM]
 
 Create an interview script for 30-minute calls. Generate 10-12 open-ended questions that:
 
 1. Understand current workflow (3-4 questions)
-   - How they do this task today
-   - Tools they currently use
-   - Time it takes
-
 2. Identify pain points (3-4 questions)
-   - Where current process breaks down
-   - Most frustrating parts
-   - Impact on their work
-
 3. Quantify impact (2-3 questions)
-   - Time wasted per week/month
-   - Money lost due to this problem
-   - What happens if problem isn't solved
-
 4. Test solution fit (2-3 questions)
-   - Willingness to try new solution
-   - What would make them NOT use it
-   - Price sensitivity
 
 Avoid leading questions. Don't describe my solution—focus on their problem.
-Format as numbered list with follow-up probes for each question.
+Format as numbered list with follow-up probes.
 ```
 
-**Output**: Interview script you can use immediately
+#### Option B: Deep Problem Research
 
-#### Option B: Deep Problem Research (if you need user voice)
-
-**Use when**: Market research shows complaints exist, but you need deeper understanding of HOW users describe the problem
+**Use when**: Market research shows complaints exist, but you need deeper understanding
 
 **What to do**:
 
 * Use AI to search forums, Reddit, Twitter for actual user complaints
-* Analyze language patterns (how do they describe the problem?)
+* Analyze language patterns
 * Identify specific user segments
-* Quantify severity from their words
+* Quantify severity
 
 **Time**: 1-2 hours (AI-assisted research)
 
@@ -217,122 +153,63 @@ Based on this market research: [PASTE YOUR MARKET RESEARCH FROM STEP 0]
 
 Now find the user voice. Search for:
 
-1. Reddit discussions
-   - Search r/[relevant subreddits] for posts about [problem area]
-   - Find threads where users complain about current solutions
-   - Extract verbatim quotes about pain points
-
-2. Forum discussions
-   - Search [relevant forums] for [problem keywords]
-   - Find specific examples of users describing the problem
-   - Note how they quantify impact (time, money, frustration)
-
+1. Reddit discussions in relevant subreddits
+2. Forum discussions with problem keywords
 3. Twitter/X conversations
-   - Search for [problem keywords] + complaint keywords
-   - Find users talking about this problem
-   - Note patterns in their language
 
 Focus on finding:
-- WHO specifically has this problem (job titles, contexts, situations)
+- WHO specifically has this problem
 - HOW they describe it (their words, not industry jargon)
 - WHAT they've tried (existing solutions, workarounds, why they failed)
-- HOW SEVERE (quantifiable impact: hours wasted, money lost, consequences)
+- HOW SEVERE (quantifiable impact: hours wasted, money lost)
 
 Organize findings by:
-- User segment (e.g., "elementary teachers", "general contractors bidding $500K-$5M projects")
+- User segment
 - Pain point themes (with frequency count)
-- Verbatim quotes (most vivid examples)
-- Quantified impact (time/cost data from posts)
+- Verbatim quotes
+- Quantified impact
 
 Format as markdown with clear sections and quote attribution.
 ```
 
-**Output**: User voice analysis with verbatim quotes, pain patterns, severity data
+#### Option C: Quick Technical Experiment
 
-#### Option C: Quick Technical Experiment (if you need feasibility validation)
-
-**Use when**: You're unsure if the technical approach will actually work
+**Use when**: You're unsure if the technical approach will work
 
 **What to do**:
 
 * Build smallest possible test (1-3 hours of coding)
 * Example: If building AI tool, test prompt quality with 5-10 examples
 * Example: If building integration, test API with sample data
-* Example: If building automation, test with manual process first
 
 **Time**: 2-4 hours (includes coding, testing, analysis)
 
-**What to validate**:
-
-* Can AI generate acceptable output quality?
-* Does the API have required data/endpoints?
-* Is performance acceptable for user experience?
-* Are there blockers we didn't anticipate?
-
-**Copy-Paste Prompt (for AI quality testing)**:
+**Copy-Paste Prompt**:
 
 ```
 I want to build [YOUR PRODUCT] using [AI MODEL/API].
 
 Help me design a quick test to validate feasibility:
 
-1. Generate 10 test cases that represent typical use
-   - Cover edge cases
-   - Include both simple and complex examples
-   - Represent real user scenarios
-
+1. Generate 10 test cases representing typical use
 2. For each test case, write:
    - Input (what user would provide)
    - Expected output (what constitutes "success")
    - Acceptance criteria (how to judge if it's good enough)
 
-3. Provide code template to run the test:
-   - Loop through test cases
-   - Call API
-   - Evaluate results against criteria
-   - Calculate success rate
+3. Provide code template to run the test
 
 Target language: [Python/JavaScript/etc.]
 API/Model: [Anthropic Claude/OpenAI/etc.]
 ```
 
-**Copy-Paste Prompt (for API integration testing)**:
-
-```
-I want to integrate with [EXTERNAL API/SERVICE] to get [WHAT DATA].
-
-Help me test if this is feasible:
-
-1. Find the API documentation
-   - Identify required endpoints
-   - Check authentication requirements
-   - Note rate limits and costs
-
-2. Generate test code to:
-   - Authenticate with API
-   - Fetch sample data (5-10 test queries)
-   - Check if data includes what we need
-   - Measure response times
-
-3. Evaluate feasibility:
-   - Does API provide required data?
-   - Is data quality sufficient?
-   - Are there deal-breaker limitations?
-   - What's the cost at expected scale?
-
-Provide working code I can run immediately.
-Target language: [Python/JavaScript/etc.]
-```
-
-**Output**: Working prototype OR evidence that approach won't work (both are valuable)
-
 ***
 
 ### Step 2: Execute Discovery (2-4 hours)
 
-#### If You Chose User Interviews:
+#### If You Chose User Interviews
 
-**After conducting 3-5 interviews**, use AI to synthesize findings.
+After conducting 3-5 interviews, synthesize findings.
 
 **Copy-Paste Synthesis Prompt**:
 
@@ -341,392 +218,340 @@ I conducted [NUMBER] user interviews about [PROBLEM AREA].
 
 Here are my raw notes from each interview:
 
-**Interview 1**:
-[PASTE NOTES]
-
-**Interview 2**:
-[PASTE NOTES]
-
+**Interview 1**: [PASTE NOTES]
+**Interview 2**: [PASTE NOTES]
 [Continue for all interviews]
 
 Synthesize these findings:
 
 1. **Current workflow patterns**
-   - How do most users approach this task?
-   - What tools do they use?
-   - How long does it take?
-
-2. **Pain point themes** (ranked by frequency)
-   - What problems came up most often?
-   - How did users describe the pain?
-   - Include verbatim quotes for top 3 pain points
-
-3. **Quantified impact**
-   - Time wasted: [X hours per week/month]
-   - Money lost: [Y dollars]
-   - Other consequences: [specific examples]
-
-4. **Current workarounds**
-   - What are they doing now to cope?
-   - Why don't those solutions work?
-
-5. **Willingness to change**
-   - How motivated are they to solve this?
-   - What would make them try a new solution?
-   - Price sensitivity signals
-
-6. **Decision**
-   - Should I build this? (Yes/No/Need more data)
-   - Reasoning based on findings
-   - If yes, what's the minimum viable solution?
+2. **Pain point themes** (ranked by frequency, include verbatim quotes)
+3. **Quantified impact** (time wasted, money lost, consequences)
+4. **Current workarounds** (what they do now, why it doesn't work)
+5. **Willingness to change** (motivation, what would make them try new solution)
+6. **Decision**: Build / Don't build / Need more data (with reasoning)
 
 Format as markdown with clear sections.
 ```
 
-**Example Output You'll Get**:
+#### If You Chose Deep Problem Research
 
-```
-## User Interview Synthesis
-
-**Interviews conducted**: 5 elementary teachers
-**Date**: February 2026
-
-**Key findings**:
-
-1. **Current workflow**: Teachers spend 1.5-2 hours per lesson plan
-   - Quote: "I spend my Sunday afternoons planning the whole week"
-   - Tools: Google Docs, Pinterest, Teachers Pay Teachers
-   - Average time: 90 minutes per lesson
-
-2. **Top pain points**:
-   - **Standards alignment takes forever** (5/5 mentioned)
-     - Quote: "I have to cross-reference 3 different documents to make sure I'm hitting the right standards"
-   - **Differentiation is time-consuming** (4/5 mentioned)
-     - Quote: "I have kids reading at grade 1 and grade 6 level. Making versions of the same lesson for each takes hours"
-
-3. **Quantified impact**:
-   - Time: 8-10 hours per week on lesson planning
-   - Personal cost: Weekend time, evening work
-   - Consequence: "I'm exhausted and don't have time for my own kids"
-
-4. **Current workarounds**:
-   - Buy pre-made lesson plans (but still need to customize)
-   - Reuse last year's plans (but standards change)
-   - Share with colleagues (but they teach different grade levels)
-
-5. **Willingness to change**: HIGH
-   - 5/5 would try a tool that cuts planning time in half
-   - 4/5 said they'd pay $15-20/month
-   - Main concern: "Will it actually save time or just be another tool I have to learn?"
-
-**Decision**: Build
-**Reasoning**: Clear, painful problem (8-10 hrs/week wasted). Users willing to pay. Standards alignment is the highest-value feature to build first.
-**MVP**: Automated standards alignment for common lesson structures. Defer differentiation to V2.
-```
-
-#### If You Chose Deep Problem Research:
-
-Use the AI to analyze and organize all the forum/Reddit posts it found.
+Use AI to analyze forum/Reddit posts.
 
 **Copy-Paste Synthesis Prompt**:
 
 ```
 Based on the user voice research you did, organize findings:
 
-1. **User segments** (who has this problem?)
-   - Segment 1: [Description, example quotes]
-   - Segment 2: [Description, example quotes]
-   - Which segment is most underserved?
-
-2. **Pain point themes** (ranked by frequency)
-   - Theme 1: [Description, frequency, vivid quotes]
-   - Theme 2: [Description, frequency, vivid quotes]
-   - Theme 3: [Description, frequency, vivid quotes]
-
+1. **User segments** (who has this problem? Which segment most underserved?)
+2. **Pain point themes** (ranked by frequency with vivid quotes)
 3. **Quantified impact** (from user posts)
-   - Time wasted: [X hours per week/month from posts]
-   - Money lost: [Y dollars from posts]
-   - Specific consequences: [examples from users]
+4. **Why current solutions fail** (with quotes)
+5. **Our opportunity** (gap we can fill, segment to target, minimum viable solution)
 
-4. **Why current solutions fail**
-   - Solution 1: [Why users reject it, quotes]
-   - Solution 2: [Why users reject it, quotes]
-
-5. **Our opportunity**
-   - What gap can we fill that existing solutions don't?
-   - Which user segment should we target first?
-   - What's the minimum viable solution?
-
-**Decision**: Build / Don't build / Need more data
-**Reasoning**: [Based on voice of user data]
+**Decision**: Build / Don't build / Need more data (with reasoning)
 
 Format as markdown.
 ```
 
-#### If You Chose Quick Technical Experiment:
+#### If You Chose Quick Technical Experiment
 
-After running your test code (from the prompt earlier), analyze results.
+After running test code, analyze results.
 
-**Example Analysis** (AI quality test):
+**Example Analysis**:
 
-```
-## Technical Validation: AI Lesson Plan Generation
+```markdown
+## Technical Validation: [What You Tested]
 
-**Test date**: February 2026
-**Test cases**: 10 lesson plans (grades 3-6, math and science)
-**Model tested**: Claude Sonnet 4
+**Test date**: [Date]
+**Test cases**: [Number and types]
+**Model/API tested**: [Technology]
 
 **Results**:
-- Acceptable quality: 8/10 (80%)
-- Too generic: 2/10
-- Standards alignment: 9/10 accurate
-- Time to generate: <30 seconds per plan
+- Acceptable quality: X/Y (Z%)
+- Issues found: [List]
+- Performance: [Metrics]
 
-**Issues found**:
-- Needs better prompts for subject-specific vocabulary
-- Sometimes misses grade-appropriate complexity
+**Workarounds identified**: [Solutions to issues]
 
-**Workarounds identified**:
-- Add grade-level examples to prompts
-- Include subject-specific context
-
-**Decision**: Proceed - 80% quality is sufficient for MVP
-**Reasoning**: Quality bar met. Identified prompt improvements. Speed is excellent.
+**Decision**: Proceed / Improve approach / Different technology
+**Reasoning**: [Based on test results]
 ```
-
-If test fails (quality <70%), document what failed and why, then decide: improve prompts, try different model, or change approach.
 
 ***
 
-### Step 3: Write the PRD (1-2 hours)
+### Step 3: Synthesis & Insights (1-2 hours)
 
-Take your discovery output and structure it for Cursor.
+**This is where product thinking happens.** Transform raw research into actionable direction.
 
-#### Copy-Paste PRD Generation Prompt
+You now have market research and discovery data. Before writing a PRD, synthesize findings into:
+
+* **Assumptions Matrix** (validated vs. needs testing)
+* **Hypothesis** (testable statement about solution)
+* **Key Insights** (evidence-backed learnings)
+* **Problem Reframe** (shift from assumptions to evidence)
+* **Recommended Direction** (which solution to build and why)
+
+#### Component 1: Assumptions Matrix
+
+**Copy-Paste Prompt**:
 
 ```
-I've completed discovery research for my product idea. Help me write a PRD (Product Requirements Document) that an AI coding assistant (Cursor) can use to build the MVP.
+Based on my discovery work:
 
-**My Discovery Work**:
+[PASTE MARKET RESEARCH FROM STEP 0]
+[PASTE DISCOVERY FINDINGS FROM STEP 2]
 
-[PASTE YOUR MARKET RESEARCH FROM STEP 0]
+Create an Assumptions Matrix with 8-12 assumptions:
 
-[PASTE YOUR VALIDATION WORK FROM STEP 2 - interviews/research/experiment]
+For each assumption:
+1. Assumption statement (specific, testable)
+2. Confidence level: HIGH (multiple sources confirm) or TO VALIDATE (needs confirmation)
+3. Evidence (what supports this)
+4. Risk if wrong (what breaks)
 
-**Instructions**:
+Format as table:
 
-Using this template, generate a complete PRD:
+| # | Assumption | Confidence | Evidence | Risk if Wrong |
+|---|------------|------------|----------|---------------|
+| 1 | [Statement] | HIGH / TO VALIDATE | [Source] | [Impact] |
 
-# [Product Name] - Product Requirements Document
+Group by: High Confidence vs. To Validate
+```
 
-**Last Updated**: [Date]  
-**Status**: Discovery Complete / Ready for Development
+**Example Output**:
 
----
+```markdown
+## Assumptions Matrix
 
-## Product Overview
+### High Confidence
 
-**One-line description**:
-[Specific: what it does + who uses it]
+| # | Assumption | Evidence | Risk if Wrong |
+|---|------------|----------|---------------|
+| 1 | Sites use paper/spreadsheets for pre-screening | Industry surveys | Solving wrong bottleneck |
+| 2 | Funnel breaks early - 56% fail before connection | Tufts CSDD study | Optimizing wrong part |
 
-**Problem we're solving**:
-[From discovery: specific user segment, specific problem, quantified impact]
+### To Validate
 
-**Solution approach**:
-[How this solves the problem - high level, not implementation]
+| # | Assumption | Logical Basis | Risk if Wrong |
+|---|------------|---------------|---------------|
+| 7 | Our users have similar pain points | Industry patterns apply | Solution doesn't fit workflow |
+```
+
+#### Component 2: Hypothesis Formation
+
+**Structure**:
+
+```
+We believe that [problem statement] because [evidence].
+
+A solution that [approach] will [outcome] without [constraint].
+
+Validation status: [Supported/Partial/Invalidated] based on [evidence].
+```
+
+**Copy-Paste Prompt**:
+
+```
+Based on discovery work and assumptions matrix:
+
+[PASTE MARKET RESEARCH]
+[PASTE ASSUMPTIONS MATRIX]
+
+Create testable hypothesis:
+
+**Initial Hypothesis**:
+We believe that [WHO] struggles with [PROBLEM] because [ROOT CAUSE backed by evidence].
+
+A solution that [APPROACH] will [MEASURABLE OUTCOME] without [CONSTRAINTS].
+
+**Validation Status**: SUPPORTED / PARTIAL / INVALIDATED
+
+Based on [EVIDENCE]:
+☑ [Supporting evidence 1]
+☑ [Supporting evidence 2]
+
+**Success Criteria**:
+- [Metric 1]: [Target]
+- [Metric 2]: [Target]
+
+**Failure Criteria**:
+- [Metric]: [Threshold for pivot]
+```
+
+#### Component 3: Key Insights
+
+**Purpose**: Extract the "so what?" from research data.
+
+**Copy-Paste Prompt**:
+
+```
+Based on research, identify 5-7 KEY INSIGHTS:
+
+[PASTE MARKET RESEARCH]
+[PASTE DISCOVERY FINDINGS]
+
+For each insight:
+1. Title: Short, punchy statement
+2. Evidence: 3-5 specific data points
+3. Implication: What this means for solution design
+
+Insights should challenge assumptions and reveal patterns.
+
+Format as:
+
+## Insight 1: [Title]
 
 **Evidence**:
-[What you learned - cite specific findings]
-- User interviews: "[key finding with quote]"
-- Market research: "[competitive gap we're filling]"
-- Technical validation: "[feasibility confirmed]"
+• [Data point with source]
+• [Data point with source]
 
----
-
-## Target Users
-
-**Primary persona**:
-- Who: [Specific segment from research, NOT "users"]
-- Job-to-be-done: [What outcome they want]
-- Current workflow: [How they do this today from interviews]
-- Pain point: [Specific problem from research, with time/cost impact]
-- Quote: "[Verbatim user quote that captures pain]"
-
----
-
-## MVP Scope
-
-### Core Features (Must Have for V1)
-
-**Feature 1: [Name based on highest-value pain point]**
-- What it does: [Specific capability]
-- User value: [Time saved / problem solved - quantified]
-- Success metric: [How we know it works]
-- Priority: P0 (launch blocker)
-
-**Feature 2: [Name based on second pain point]**
-- What it does: [Specific capability]
-- User value: [Why this matters]
-- Success metric: [How we measure]
-- Priority: P1 (launch blocker)
-
-[Add 1-2 more core features if validated in research]
-
-### Explicitly Out of Scope (V2+)
-
-- [Feature mentioned by users but not validated enough]
-  - Why deferred: [Not critical for MVP / complexity too high / can validate after]
-- [Feature that's nice-to-have]
-  - Why deferred: [Reasoning]
-
----
-
-## User Flows
-
-**Primary flow** (happy path):
-1. User starts at [entry point]
-2. User [action]
-3. System [behavior]
-4. User sees [outcome]
-5. Success state: [What indicates they got value]
-
-**Edge cases**:
-- If [error scenario] → System [behavior], User sees [message]
-- If [edge case] → System [fallback behavior]
-
----
-
-## Technical Requirements
-
-**Platform**: [Web / Mobile / Both - based on user workflow from research]
-
-**Performance requirements**:
-- [Metric]: [Threshold from user expectations]
-  Example: "Generate lesson plan in <30 seconds" (based on interview feedback)
-- [Metric]: [Threshold]
-
-**Third-party services** (if known from technical validation):
-- [API/Service]: [Purpose, why we need it]
-  Example: "Anthropic Claude API for lesson plan generation (validated 80% quality)"
-
-**Data requirements**:
-- What data we need to store: [From user workflows]
-- What data we need to source: [From technical validation]
-
-**Compliance** (if applicable from market research):
-- [Standard]: [Specific requirements]
-  Example: "FERPA compliance - no student PII stored, only teacher accounts"
-
----
-
-## Success Metrics
-
-**Primary metric** (North Star):
-[Main indicator that product solves the problem]
-Example: "Reduce lesson planning time from 90 minutes to <30 minutes"
-
-**How we'll measure**:
-- [Input metric]: [Target] - [How measured]
-  Example: "Time from start to download: <30 min - tracked in app"
-- [Adoption metric]: [Target] - [How measured]
-  Example: "70% of users complete their first lesson plan - analytics event"
-- [Value metric]: [Target] - [How measured]
-  Example: "80% report time savings - post-use survey"
-
-**Decision point**: [When we evaluate MVP success]
-Example: "After 50 teachers use the tool - if <60% report time savings, pivot approach"
-
----
-
-## Open Questions
-
-[Only include if there are genuine blockers]
-
-1. [Question that requires decision before building]
-   - Context: [Why this matters]
-   - Blocking: [Yes/No]
-   - Decision needed by: [When]
-
----
-
-## Next Steps
-
-1. Knowledge handoff: Create CONTEXT.md, CONSTRAINTS.md, .cursorrules
-2. Infrastructure setup in Cursor (4-6 hours)
-3. Build MVP features (based on prioritization above)
-4. Beta test with [N] users from research
-5. Measure success metrics
-6. Iterate or pivot based on data
-
----
-
-Based on the discovery data I provided:
-- Fill in all brackets with specific information
-- Be concrete, not generic
-- Quote actual user findings where relevant
-- Make technical requirements specific (not "fast" but "<2s load time")
-- Ensure MVP scope is minimal but solves the core validated problem
+**Implication**: [What this means]
 ```
 
-#### What You'll Get
+**Example Output**:
 
-A complete, structured PRD that Cursor can use to understand:
+```markdown
+## Insight 1: Problem is Access, Not Willingness
 
-* Exactly what problem you're solving (with evidence)
-* Who you're solving it for (with quotes)
-* What to build first (prioritized features)
-* How to measure success (specific metrics)
-* What NOT to build yet (out of scope)
+**Evidence**:
+• 56% of failures occur because no one connected patient to trial
+• Only 2-8% participate, but climbs when friction reduced
+• Decentralized trials show 96% retention vs. 70%
+
+**Implication**: Focus on surfacing eligible patients and reducing friction, not "convincing" patients.
+```
+
+#### Component 4: Problem Reframe
+
+**Purpose**: Show how evidence changed your understanding.
+
+**Copy-Paste Prompt**:
 
 ```
----
+Create PROBLEM REFRAME showing how evidence changed understanding:
 
-## Summary: Rapid Discovery (4-8 hours)
+[PASTE INITIAL IDEA/ASSUMPTION]
+[PASTE KEY INSIGHTS]
 
-**What you produce**:
-0. Market research (30-60 min): Competitive landscape, user complaints, pricing, gaps
-1. Validation method choice (30 min): Pick ONE based on what market research revealed
-2. Discovery execution (2-4 hours): User interviews OR problem research OR technical experiment  
-3. Structured PRD (1-2 hours): Ready for Cursor consumption with AI assistance
+**What We Thought**:
+[Initial problem assumption]
 
-**Total time**: 4-8 hours (not weeks)
+**What Research Revealed**:
+[Evidence-backed actual problem]
 
-**Tools you used**: Any conversational AI (Claude, ChatGPT, etc.) with web search capability
-
-**Decision**: After these 4-8 hours, you have enough to start building. Full validation comes after MVP, not before.
-
-### When to invest more time:
-
-- **Regulated industry** (healthcare, finance) - add 2-4 hours for compliance deep-dive
-- **Unfamiliar domain** - add 2-3 hours for additional market research
-- **High technical risk** - add 2-4 hours for more extensive proof-of-concept
-- **Enterprise sales** - add 3-4 hours for buyer persona research
-
-### When 4-8 hours is enough:
-
-- You have domain expertise
-- Problem is clear from market research
-- You can test with real users post-MVP
-- Risk tolerance is high (startup, side project)
-- You're validating solution approach, not problem existence
-
-### Red flags that mean "don't build":
-
-- Market research shows no complaints about existing solutions
-- Users in interviews can't quantify the problem
-- Technical experiment shows fundamental blockers
-- Regulatory requirements are prohibitively complex
-- Competitive analysis shows saturated market with happy users
-
-### Green lights that mean "build the MVP":
-
-- 3+ users articulate same pain point
-- Quantified impact (time/money) is significant  
-- Technical feasibility validated
-- Clear gap in competitive landscape
-- Users express willingness to pay
-
----
-
-**Next**: [Part 2: Knowledge Handoff (Claude → Cursor)](./Part_2_Knowledge_Handoff.md)
+**Core Reframe**:
+[New problem statement - specific, evidence-backed]
 ```
+
+**Example Output**:
+
+```markdown
+**What We Thought**: Patients aren't participating because they fear trials
+
+**What Research Revealed**: 56% never connected to trials—problem is access, not fear
+
+**Core Reframe**: Eligible patients exist but aren't being connected to the right trial at the right moment. This is an access problem, not a willingness problem.
+```
+
+#### Component 5: Recommended Direction
+
+**Copy-Paste Prompt**:
+
+```
+Recommend which solution to build:
+
+[PASTE PROBLEM REFRAME]
+[PASTE KEY INSIGHTS]
+[PASTE ASSUMPTIONS MATRIX]
+
+## Options Considered
+
+Create 3 solution options with:
+- Description
+- Problems addressed
+- Pros/cons
+
+## Recommended: Option [X]
+
+**Why This Option**: [Evidence-based reasoning]
+
+**Core Capabilities** (MVP):
+1. [Capability]: [Why essential]
+2. [Capability]: [Why essential]
+
+**Out of Scope** (V2+):
+- [Feature]: [Why deferring]
+
+**Validation Plan**:
+1. [First assumption to test]
+```
+
+#### Compile Discovery Insights Report
+
+**Copy-Paste Prompt**:
+
+```
+Compile all components into Discovery Insights Report:
+
+[PASTE ASSUMPTIONS MATRIX]
+[PASTE HYPOTHESIS]
+[PASTE KEY INSIGHTS]
+[PASTE PROBLEM REFRAME]
+[PASTE RECOMMENDED DIRECTION]
+
+Create structured report with sections:
+- Executive Summary (reframe + recommendation)
+- Hypothesis
+- Methodology
+- Assumptions Matrix
+- Key Insights
+- Problem Reframe
+- Recommended Direction
+- What to Validate Next
+
+Format as professional markdown.
+```
+
+***
+
+### Summary: Discovery and Synthesis (4-7 hours)
+
+**What you produce**: 0. Market research (30-60 min): Competitive landscape, user complaints, gaps
+
+1. Validation method choice (30 min): Pick ONE based on market research
+2. Discovery execution (2-4 hours): User interviews OR problem research OR technical experiment
+3. Synthesis & insights (1-2 hours): Assumptions, hypothesis, insights, reframe, direction
+
+**Total time**: 4-7 hours
+
+**Tools**: Any conversational AI (Claude, ChatGPT, Perplexity) with web search
+
+**Output**: Discovery Insights Report with evidence-backed direction
+
+#### When to invest more time
+
+* **Regulated industry** (healthcare, finance) - add 2-4 hours for compliance research
+* **Unfamiliar domain** - add 2-3 hours for deeper market research
+* **High technical risk** - add 2-4 hours for extensive proof-of-concept
+* **Enterprise sales** - add 3-4 hours for buyer persona research
+
+#### Red flags: don't build
+
+* Market research shows no complaints
+* Users can't quantify the problem
+* Technical experiment shows fundamental blockers
+* Regulatory requirements prohibitively complex
+* Saturated market with happy users
+
+#### Green lights: proceed to PRD
+
+* 3+ users articulate same pain point
+* Quantified impact (time/money) is significant
+* Technical feasibility validated
+* Clear gap in competitive landscape
+* Users express willingness to pay
+
+***
+
+**Next**: Part 2: PRD Development
