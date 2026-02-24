@@ -1,84 +1,50 @@
-# Part 4: Iteration and Scaling
+# Part 5: Iteration and Scaling
 
-**Purpose**: Handle pivots, refactoring, and infrastructure evolution while maintaining velocity.
+**Purpose:** Handle pivots, refactoring, and infrastructure evolution while maintaining velocity.
 
-**Reality**: Your hypothesis will be wrong. Your first MVP will need changes. This is how to adapt without starting from scratch.
+**Reality:** Your hypothesis will be wrong. Your first MVP will need changes. This is how to adapt without starting from scratch.
 
----
+***
 
-## Why Iteration Matters More Than Initial Setup
+### Why Iteration Matters More Than Initial Setup
 
 I've built three products at Swift Racks that required major pivots:
 
-**TakeCost**: Started accuracy-first, pivoted to speed-first after user research showed contractors lose bids due to slow estimation, not inaccurate pricing.
-
-**EdPal**: Started as VR education platform, pivoted to AI lesson planning after discovering teachers needed prep time reduction, not immersive experiences.
-
-**CNS**: Started as experiment tracking tool, evolved into multi-agent innovation platform after recognizing broader workflow automation opportunity.
+* **TakeCost:** Started accuracy-first, pivoted to speed-first after user research showed contractors lose bids due to slow estimation, not inaccurate pricing.
+* **EdPal:** Started as VR education platform, pivoted to AI lesson planning after discovering teachers needed prep time reduction, not immersive experiences.
+* **CNS:** Started as experiment tracking tool, evolved into multi-agent innovation platform after recognizing broader workflow automation opportunity.
 
 None of these pivots meant starting over. They meant restructuring deliberately based on evidence.
 
----
+***
 
-## When to Pivot
+### When to Pivot
 
-### Decision Framework: Go/Pivot/Kill
+#### Decision Framework: Go/Pivot/Kill
 
 After each experiment or beta cycle, evaluate:
 
-**Go** (continue current direction):
-- Success metrics met or exceeded
-- User feedback positive
-- Technical implementation scalable
-- Decision: Keep building, add features
+<table><thead><tr><th width="106">Decision</th><th>When</th><th>Action</th></tr></thead><tbody><tr><td><strong>Go</strong></td><td>Success metrics met, user feedback positive, implementation scalable</td><td>Keep building, add features</td></tr><tr><td><strong>Pivot</strong></td><td>Hypothesis partially validated (right problem, wrong solution)</td><td>Restructure, keep learnings</td></tr><tr><td><strong>Kill</strong></td><td>Hypothesis invalidated (wrong problem), market changed</td><td>Document learnings, move on</td></tr></tbody></table>
 
-**Pivot** (change direction):
-- Hypothesis partially validated (right problem, wrong solution)
-- User feedback mixed (love the concept, hate the execution)
-- Technical constraints blocking progress
-- Decision: Restructure, keep learnings
+#### Signals to Pivot
 
-**Kill** (stop the project):
-- Hypothesis invalidated (wrong problem)
-- User feedback negative (don't want this)
-- Market conditions changed
-- Decision: Document learnings, move to next idea
+| Signal                                 | Example                                                    | Action                                |
+| -------------------------------------- | ---------------------------------------------------------- | ------------------------------------- |
+| User behavior contradicts stated needs | Users said accuracy mattered, but abandoned at review step | Change focus (accuracy → speed)       |
+| Technical constraints block core value | Hand-tracking couldn't replicate precision movements       | Kill project (fundamental limitation) |
+| Adjacent opportunity emerges           | Experiment tracking revealed workflow automation need      | Expand scope, evolve architecture     |
+| Competitive landscape shifts           | New entrant solves problem differently                     | Find differentiation or pivot         |
 
-### Signals to Pivot
+***
 
-**User behavior contradicts stated needs**:
-- Example (TakeCost): Users said accuracy mattered, but behavioral data showed they valued speed
-- Action: Pivot product focus from accuracy optimization to speed optimization
+### How to Execute a Pivot
 
-**Technical constraints block core value prop**:
-- Example (Boeing VR): Hand-tracking couldn't replicate precision-level finger movements for oxygen mask installation
-- Action: Kill project, not pivot (technical limitation was fundamental)
+#### Step 1: Identify What to Keep
 
-**Adjacent opportunity emerges**:
-- Example (CNS): While building experiment tracking, discovered teams needed entire validation workflow automation
-- Action: Expand scope, evolve architecture
+Don't throw away validated learnings.
 
-**Competitive landscape shifts**:
-- New entrant solves the problem differently
-- Incumbent adds your core feature
-- Action: Find differentiation or pivot to adjacent space
+**Template:**
 
----
-
-## How to Execute a Pivot
-
-### Step 1: Identify What to Keep
-
-**Don't throw away validated learnings.**
-
-From TakeCost pivot:
-- **Keep**: User research (contractors need speed)
-- **Keep**: Computer vision infrastructure (still needed for extraction)
-- **Keep**: Material pricing database integration
-- **Change**: UX flow (optimize for speed, not accuracy review)
-- **Change**: Value proposition (fast estimates vs accurate estimates)
-
-Template:
 ```markdown
 ## Pivot Analysis
 
@@ -99,103 +65,101 @@ Template:
 - [Architecture assumptions that no longer hold]
 ```
 
-### Step 2: Update Documentation First
+***
 
-Before changing code, update your knowledge base:
+#### Step 2: Update Documentation First
 
-**PRD.md updates**:
+Before changing code, update your knowledge base.
+
+**PRD.md updates:**
+
 ```markdown
 ## Pivot History
 
-### Pivot 1: Accuracy → Speed (March 2024)
+### Pivot 1: [Old Direction] → [New Direction] (Date)
 
 **Previous hypothesis**:
-Contractors need more accurate estimates to win bids
+[What we believed]
 
 **What we learned**:
-Contractors lose bids due to submission speed, not accuracy. 90% accuracy is sufficient if delivered in <2 hours vs 8-12 hours.
+[Evidence that invalidated hypothesis]
 
 **Evidence**:
-- 15/15 contractors in concierge test prioritized speed
-- Average estimate adjustment: 8% (acceptable range)
-- Win rate remained stable with faster, less accurate estimates
+- [Specific data point]
+- [User feedback]
+- [Metric that didn't move]
 
 **Changes to product**:
-- Remove multi-pass accuracy verification
-- Add real-time processing status
-- Simplify review UI for faster approval
+- [Feature removed/changed]
+- [New focus area]
 
 **What stayed the same**:
-- Computer vision for measurement extraction
-- Material pricing integration
-- PDF upload workflow
+- [Preserved infrastructure]
+- [Validated capabilities]
 ```
 
-**ARCHITECTURE.md updates**:
-```markdown
-### ADR-004: Pivot from Accuracy-First to Speed-First
+**ARCHITECTURE.md updates:**
 
-**Date**: March 15, 2024  
+```markdown
+### ADR-00X: Pivot from [Old] to [New]
+
+**Date**: [When decided]
 **Status**: Accepted
 
 **Context**:
-Initial hypothesis assumed accuracy was primary value driver. User research revealed speed is the actual constraint—contractors skip bidding opportunities due to time pressure, not accuracy concerns.
+[What evidence drove the pivot]
 
 **Decision**:
-Restructure processing pipeline to optimize for speed:
-- Remove secondary validation pass (saved ~15min per estimate)
-- Process sections in parallel vs sequential
-- Use 90% confidence threshold instead of 95%
+[What we're changing]
 
 **What we're removing**:
-- Multi-pass verification system
-- Detailed accuracy reporting UI
-- Manual correction workflow
+- [Old feature/module]
 
 **What we're keeping**:
-- Computer vision infrastructure
-- Material pricing integration
-- Core data models
+- [Preserved infrastructure]
 
 **Migration plan**:
-1. Feature flag new pipeline (1 week)
-2. A/B test: accuracy vs speed (2 weeks)
-3. Sunset old pipeline if metrics hold (1 week)
+1. [Step with timeline]
+2. [Step with timeline]
 
 **Rollback criteria**:
-- Win rate drops >10% below baseline
-- User complaints about accuracy exceed 40%
+- [When we'd reverse this decision]
 ```
 
-### Step 3: Feature Flag the Pivot
+***
+
+#### Step 3: Feature Flag the Pivot
 
 Don't change everything at once. Run old and new versions in parallel.
 
 ```typescript
 // config/features.ts
 export const features = {
-  USE_SPEED_OPTIMIZED_PIPELINE: process.env.FEATURE_SPEED_PIPELINE === 'true',
-  LEGACY_ACCURACY_MODE: process.env.FEATURE_LEGACY_ACCURACY === 'true'
+  USE_NEW_PIPELINE: process.env.FEATURE_NEW_PIPELINE === 'true',
+  LEGACY_MODE: process.env.FEATURE_LEGACY_MODE === 'true'
 };
 
-// services/estimation.ts
+// services/processor.ts
 import { features } from '@/config/features';
 
-async function generateEstimate(blueprint: Blueprint): Promise<Estimate> {
-  if (features.USE_SPEED_OPTIMIZED_PIPELINE) {
-    return await speedOptimizedPipeline(blueprint);
+async function process(input: Input): Promise<Output> {
+  if (features.USE_NEW_PIPELINE) {
+    return await newPipeline(input);
   } else {
-    return await legacyAccuracyPipeline(blueprint);
+    return await legacyPipeline(input);
   }
 }
 ```
 
-**Why feature flags**:
-- Test new direction with subset of users
-- Easy rollback if hypothesis is wrong
-- Gradual migration reduces risk
+**Why feature flags:**
 
-### Step 4: Measure the Pivot
+* Test new direction with subset of users
+* Easy rollback if hypothesis is wrong
+* Gradual migration reduces risk
+
+***
+
+#### Step 4: Measure the Pivot
 
 Define success metrics before implementing changes.
 
@@ -203,89 +167,82 @@ Define success metrics before implementing changes.
 ## Pivot Success Metrics
 
 **Primary metric** (must improve):
-- Time to complete estimate: <2 hours (vs 8-12 hours baseline)
+- [Metric]: [Target] (vs [baseline])
 
-**Guard rails** (must not degrade):
-- Win rate: Within 5% of baseline
-- User satisfaction: >70% rate "very satisfied"
+**Guardrails** (must not degrade):
+- [Metric]: Within [X]% of baseline
+- [Metric]: > [threshold]
 
 **Leading indicators** (early signals):
-- Completion rate: >80% of started estimates
-- Feature adoption: >60% use new flow within 2 weeks
+- [Metric]: [Target]
+- [Metric]: [Target]
 
-**Decision point**: 4 weeks after launch
-- If primary metric met + guard rails hold → Sunset old flow
-- If primary metric missed → Iterate on speed optimization
-- If guard rails fail → Rollback, investigate root cause
+**Decision point**: [Timeframe] after launch
+- If primary metric met + guardrails hold → Sunset old flow
+- If primary metric missed → Iterate on new approach
+- If guardrails fail → Rollback, investigate
 ```
 
----
+***
 
-## When to Refactor vs Start Fresh
+### When to Refactor vs Start Fresh
 
-### Decision Framework
+#### Decision Framework
 
-**Refactor** (evolve existing codebase):
-- Core architecture still valid
-- Technical debt localized to specific modules
-- Team familiar with existing code
-- Customer data and integrations need preservation
+<table><thead><tr><th width="228">Factor</th><th>Refactor</th><th>Start Fresh</th></tr></thead><tbody><tr><td>Core architecture</td><td>Still valid</td><td>Fundamentally wrong</td></tr><tr><td>Technical debt</td><td>Localized to modules</td><td>Distributed throughout</td></tr><tr><td>Team familiarity</td><td>Knows existing code</td><td>Would be faster learning new</td></tr><tr><td>Customer data</td><td>Must preserve</td><td>Can migrate or no data yet</td></tr><tr><td>Timeline</td><td>Incremental possible</td><td>Clean slate faster</td></tr></tbody></table>
 
-**Start fresh** (new codebase):
-- Architecture fundamentally wrong for new direction
-- Technical debt distributed throughout
-- Pivot is major enough that clean slate is clearer
-- Migration path exists for customer data
+#### Example: Refactor Decision (TakeCost)
 
-### Example: Refactor Decision (TakeCost)
+**Scenario:** Pivot from accuracy-first to speed-first
 
-**Scenario**: Pivot from accuracy-first to speed-first
+**Analysis:**
 
-**Analysis**:
-- Core architecture (CV → measurement → pricing) still valid ✓
-- Data models unchanged (estimates, materials, users) ✓
-- Main change is processing pipeline order ✓
-- Customer data preserved in same schema ✓
+* Core architecture (CV → measurement → pricing) still valid ✓
+* Data models unchanged (estimates, materials, users) ✓
+* Main change is processing pipeline order ✓
+* Customer data preserved in same schema ✓
 
-**Decision**: Refactor
-- Create new processing module
-- Feature flag for gradual rollout
-- Deprecate old module after validation
+**Decision:** Refactor
 
-**Time investment**: 2-3 weeks
+* Create new processing module
+* Feature flag for gradual rollout
+* Deprecate old module after validation
+* Time: 2-3 weeks
 
-### Example: Start Fresh Decision (EdPal)
+#### Example: Start Fresh Decision (EdPal)
 
-**Scenario**: Pivot from VR education to AI lesson planning
+**Scenario:** Pivot from VR education to AI lesson planning
 
-**Analysis**:
-- Architecture completely different (VR rendering vs text generation) ✗
-- Tech stack different (Unity vs web app) ✗
-- User workflows unrelated (immersive experience vs form input) ✗
-- No customer data to preserve (hadn't launched) ✗
+**Analysis:**
 
-**Decision**: Start fresh
-- Apply infrastructure setup playbook to new project
-- Preserve user research insights only
-- Don't port code from VR prototype
+* Architecture completely different (VR rendering vs text generation) ✗
+* Tech stack different (Unity vs web app) ✗
+* User workflows unrelated (immersive experience vs form input) ✗
+* No customer data to preserve (hadn't launched) ✗
 
-**Time investment**: 4-6 weeks (full MVP cycle)
+**Decision:** Start fresh
 
----
+* Apply infrastructure setup playbook to new project
+* Preserve user research insights only
+* Don't port code from VR prototype
+* Time: 4-6 weeks (full MVP cycle)
 
-## Scaling Infrastructure
+***
 
-### When to Scale
+### Scaling Infrastructure
 
-**Don't optimize prematurely.** Scale when data shows you need to, not when you think you might.
+#### When to Scale
 
-**Signals to scale**:
-1. **Performance degradation** - Response times increasing, users complaining
-2. **Cost explosion** - Infrastructure costs growing faster than revenue
-3. **Reliability issues** - Downtime or errors becoming frequent
-4. **Feature velocity slowing** - Technical debt blocking new development
+Don't optimize prematurely. Scale when data shows you need to.
 
-### Scaling Decision Tree
+| Signal                   | Symptom                               | Response                       |
+| ------------------------ | ------------------------------------- | ------------------------------ |
+| Performance degradation  | Response times increasing             | Add caching, optimize queries  |
+| Cost explosion           | Infrastructure costs > revenue growth | Right-size resources, optimize |
+| Reliability issues       | Downtime, errors increasing           | Add redundancy, monitoring     |
+| Feature velocity slowing | Tech debt blocking development        | Refactor critical paths        |
+
+#### Scaling Decision Tree
 
 ```
 What's the bottleneck?
@@ -296,7 +253,7 @@ What's the bottleneck?
 ├─ API response times high
 │  ├─ Add caching (CDN for static, Redis for dynamic)
 │  ├─ Optimize N+1 queries
-│  └─ Consider serverless functions for specific endpoints
+│  └─ Consider serverless for specific endpoints
 ├─ Frontend load slow
 │  ├─ Code splitting
 │  ├─ Lazy loading
@@ -307,311 +264,246 @@ What's the bottleneck?
    └─ Optimize job processing logic
 ```
 
+***
+
 ### Migration Patterns
 
 #### Pattern 1: BaaS → Custom Backend
 
-**When**: BaaS costs exceed custom backend costs, or hitting scale limits
+**When:** BaaS costs exceed custom backend costs, or hitting scale limits
 
-**Migration approach** (Air Canada pattern):
-1. **Parallel infrastructure** - Build custom backend alongside Firebase
-2. **Feature flag migration** - Route reads to custom backend, writes to both
-3. **Data sync** - Background job keeps systems in sync
-4. **Gradual cutover** - Move user segments incrementally
-5. **Sunset BaaS** - After full migration validated
+**Migration approach:**
 
-**Example**:
-```typescript
-// services/api-client.ts
-import { features } from '@/config/features';
+1. **Parallel infrastructure** — Build custom backend alongside BaaS
+2. **Feature flag migration** — Route reads to custom backend, writes to both
+3. **Data sync** — Background job keeps systems in sync
+4. **Gradual cutover** — Move user segments incrementally
+5. **Sunset BaaS** — After full migration validated
 
-async function getUser(userId: string): Promise<User> {
-  if (features.USE_CUSTOM_BACKEND) {
-    // Read from new backend
-    return await customBackend.users.get(userId);
-  } else {
-    // Read from Firebase
-    return await firebase.firestore().collection('users').doc(userId).get();
-  }
-}
+**Timeline:** 6-12 weeks depending on data volume
 
-async function updateUser(userId: string, data: Partial<User>): Promise<void> {
-  // Write to both during migration
-  await Promise.all([
-    customBackend.users.update(userId, data),
-    firebase.firestore().collection('users').doc(userId).update(data)
-  ]);
-}
-```
-
-**Timeline**: 6-12 weeks depending on data volume and complexity
+***
 
 #### Pattern 2: Monolith → Microservices
 
-**When**: Different parts of system have different scaling needs
+**When:** Different parts of system have different scaling needs
 
-**Migration approach** (RaceRocks pattern):
-1. **Identify bounded contexts** - What parts are truly independent?
-2. **Extract one service** - Start with least risky, highest value
-3. **Establish patterns** - API contracts, auth, observability
-4. **Iterate** - Extract next service using established patterns
+**Migration approach:**
 
-**Don't extract**:
-- Services that share database heavily
-- Services with frequent cross-service calls
-- Services that change together
+1. **Identify bounded contexts** — What parts are truly independent?
+2. **Extract one service** — Start with least risky, highest value
+3. **Establish patterns** — API contracts, auth, observability
+4. **Iterate** — Extract next service using established patterns
 
-**Example boundaries** (CNS platform):
-- **Experiment service** - CRUD for experiments, hypothesis, learnings
-- **AI orchestration service** - Multi-agent coordination, prompt management
-- **User service** - Auth, profiles, permissions
+**Don't extract:**
 
-**Timeline**: 3-6 months for meaningful decomposition
+* Services that share database heavily
+* Services with frequent cross-service calls
+* Services that change together
+
+**Timeline:** 3-6 months for meaningful decomposition
+
+***
 
 #### Pattern 3: Synchronous → Asynchronous
 
-**When**: Long-running operations block user experience
+**When:** Long-running operations block user experience
 
-**Migration approach**:
-1. **Add queue** - SQS, BullMQ, RabbitMQ
-2. **Convert to job** - Move processing to background worker
-3. **Poll for status** - Frontend checks job status
-4. **Notify on completion** - WebSocket, push notification, or polling
+**Migration approach:**
 
-**Example** (TakeCost AutoTake):
+1. **Add queue** — SQS, BullMQ, RabbitMQ
+2. **Convert to job** — Move processing to background worker
+3. **Poll for status** — Frontend checks job status
+4. **Notify on completion** — WebSocket, push notification, or polling
+
 ```typescript
 // Before: Synchronous (blocks for 30 seconds)
-app.post('/api/estimates', async (req, res) => {
-  const blueprint = req.file;
-  const estimate = await processBlueprint(blueprint); // 30s
-  res.json(estimate);
+app.post('/api/process', async (req, res) => {
+  const result = await longOperation(req.body); // 30s
+  res.json(result);
 });
 
 // After: Asynchronous (returns immediately)
-app.post('/api/estimates', async (req, res) => {
-  const blueprint = req.file;
-  
-  // Create job
-  const job = await queue.add('process-blueprint', { blueprintId: blueprint.id });
-  
-  // Return job ID
+app.post('/api/process', async (req, res) => {
+  const job = await queue.add('process', req.body);
   res.json({ jobId: job.id, status: 'processing' });
 });
 
-// Status endpoint
-app.get('/api/estimates/:jobId/status', async (req, res) => {
+app.get('/api/process/:jobId/status', async (req, res) => {
   const job = await queue.getJob(req.params.jobId);
   res.json({
     status: job.status,
-    progress: job.progress,
     result: job.status === 'completed' ? job.result : null
   });
 });
-
-// Worker
-queue.process('process-blueprint', async (job) => {
-  const { blueprintId } = job.data;
-  const blueprint = await getBlueprint(blueprintId);
-  const estimate = await processBlueprint(blueprint);
-  return estimate;
-});
 ```
 
-**Timeline**: 1-2 weeks per conversion
+***
 
----
+### Maintaining Velocity During Change
 
-## Maintaining Velocity During Change
+#### Principle: Don't Stop Shipping
 
-### Principle: Don't Stop Shipping
+| Bad Approach                                   | Good Approach                                  |
+| ---------------------------------------------- | ---------------------------------------------- |
+| Freeze features for 3 months while refactoring | Refactor incrementally while shipping features |
 
-**Bad approach**: Freeze features for 3 months while refactoring
-
-**Good approach**: Refactor incrementally while shipping features
-
-### Tactics
+#### Tactics
 
 **1. Feature branches live short**
-- Target: 2-3 days maximum per branch
-- Merge frequently, even if incomplete (use feature flags)
-- Large refactors broken into small PRs
+
+* Target: 2-3 days maximum per branch
+* Merge frequently, even if incomplete (use feature flags)
+* Large refactors broken into small PRs
 
 **2. Backward compatibility during migration**
-- Old and new systems run in parallel
-- Gradual cutover, not big bang
-- Easy rollback if issues arise
+
+* Old and new systems run in parallel
+* Gradual cutover, not big bang
+* Easy rollback if issues arise
 
 **3. Automated testing prevents regressions**
-- Write tests for critical paths before refactoring
-- CI runs tests on every PR
-- Block merge if tests fail
+
+* Write tests for critical paths before refactoring
+* CI runs tests on every PR
+* Block merge if tests fail
 
 **4. Feature flags enable progressive rollout**
-- Test with 1% of users first
-- Gradually increase to 100%
-- Kill switch if problems emerge
 
----
+* Test with 1% of users first
+* Gradually increase to 100%
+* Kill switch if problems emerge
 
-## Technical Debt Management
+***
 
-### When to Pay Down Debt
+### Technical Debt Management
 
-**Not all technical debt is equal.**
+#### When to Pay Down Debt
 
-**Pay down when**:
-- Debt blocks feature velocity (can't ship fast)
-- Debt causes production issues (reliability)
-- Debt makes debugging hard (wasted time)
-- New team members confused (onboarding friction)
+Not all technical debt is equal.
 
-**Defer when**:
-- Debt is localized and not spreading
-- Features more important for product validation
-- Paying debt would block pivot ability
+| Pay Down When                 | Defer When                             |
+| ----------------------------- | -------------------------------------- |
+| Debt blocks feature velocity  | Debt is localized and not spreading    |
+| Debt causes production issues | Features more important for validation |
+| Debugging is painful          | Paying debt would block pivot ability  |
+| New team members confused     |                                        |
 
-### Debt Prioritization Framework
+#### Debt Prioritization Framework
 
-```markdown
-## Technical Debt Registry
+| Item                        | Impact             | Effort          | Priority           |
+| --------------------------- | ------------------ | --------------- | ------------------ |
+| No type safety in API layer | High (bugs)        | Medium (1 week) | P0 - Do now        |
+| Inconsistent error handling | Medium (debugging) | Low (2 days)    | P1 - Schedule soon |
+| Old dependencies            | Low (security)     | Medium (3 days) | P2 - This quarter  |
 
-| Item | Impact | Effort | Priority | Pay By |
-|------|--------|--------|----------|--------|
-| No type safety in API layer | High (bugs) | Medium (1 week) | P0 | Next sprint |
-| Inconsistent error handling | Medium (debugging) | Low (2 days) | P1 | This month |
-| Old dependencies | Low (security) | Medium (3 days) | P2 | This quarter |
-```
+**Priority calculation:**
 
-**Priority calculation**:
-- P0: High impact + Low-Medium effort → Do now
-- P1: High impact + High effort OR Medium impact + Low effort → Schedule soon
-- P2: Low impact OR very high effort → Defer unless critical
+* **P0:** High impact + Low-Medium effort → Do now
+* **P1:** High impact + High effort OR Medium impact + Low effort → Schedule soon
+* **P2:** Low impact OR very high effort → Defer unless critical
 
----
+***
 
-## Case Studies
+### Case Study: TakeCost Speed Pivot
 
-### Case Study 1: TakeCost Speed Pivot
+**Context:** Launched with accuracy-first UX. Users didn't adopt.
 
-**Context**: Launched with accuracy-first UX. Users didn't adopt.
+**Evidence:**
 
-**Evidence**:
-- User interviews: 15/15 contractors said "speed is most important"
-- Behavioral data: Users abandoned at review step (wanted quick approval)
-- Competitor analysis: Fast estimates winning despite lower accuracy
+* User interviews: 15/15 contractors said "speed is most important"
+* Behavioral data: Users abandoned at review step
+* Competitor analysis: Fast estimates winning despite lower accuracy
 
-**Decision**: Pivot to speed-first
+**Decision:** Pivot to speed-first
 
-**What changed**:
-- Removed multi-pass verification
-- Simplified review UI
-- Added real-time status updates
+**What changed:**
 
-**What stayed**:
-- Computer vision pipeline
-- Material pricing integration
-- Core data models
+* Removed multi-pass verification
+* Simplified review UI
+* Added real-time status updates
 
-**Implementation**:
-- Week 1: Document pivot rationale, update PRD
-- Week 2: Implement speed-optimized pipeline
-- Week 3-4: A/B test old vs new
-- Week 5: Sunset old flow after metrics validated
+**What stayed:**
 
-**Results**:
-- Estimate completion time: 8 hours → 1.5 hours
-- Completion rate: 40% → 85%
-- Win rate: Unchanged (confirms accuracy was sufficient)
+* Computer vision pipeline
+* Material pricing integration
+* Core data models
 
-**Key lesson**: User research > assumptions. Validate before building.
+**Implementation:**
 
-### Case Study 2: EdPal VR → AI Pivot
+* Week 1: Document pivot rationale, update PRD
+* Week 2: Implement speed-optimized pipeline
+* Week 3-4: A/B test old vs new
+* Week 5: Sunset old flow after metrics validated
 
-**Context**: Built VR education prototype. Teachers didn't want it.
+**Results:**
 
-**Evidence**:
-- User feedback: "This is cool but doesn't solve my problem"
-- Real problem: Prep time (2 hours per lesson plan)
-- VR didn't reduce prep time—it created new overhead
+* Estimate completion time: 8 hours → 1.5 hours
+* Completion rate: 40% → 85%
+* Win rate: Unchanged (confirms accuracy was sufficient)
 
-**Decision**: Kill VR, pivot to AI lesson planning
+**Key lesson:** User research > assumptions. Validate before building.
 
-**What changed**:
-- Entire tech stack (Unity → Web)
-- Entire architecture (VR rendering → Text generation)
-- User workflow (immersive experience → Form input)
+***
 
-**What stayed**:
-- User research insights (teachers need time savings)
-- Target persona (elementary teachers)
-- Distribution strategy (Schulich network)
+### Summary: Iteration and Scaling
 
-**Implementation**:
-- Week 1: Validate AI hypothesis with concierge test
-- Week 2-8: Build AI lesson planning MVP from scratch
-- Week 9-12: Beta with 15 teachers
+**When to pivot:**
 
-**Results**:
-- Prep time: 2 hours → 15 minutes
-- Adoption: 70% used AI-generated plans with minimal edits
-- Willingness to pay: 60% said "yes" or "maybe" to $20/month
+* User behavior contradicts stated needs
+* Technical constraints block core value
+* Adjacent opportunity emerges
+* Competitive landscape shifts
 
-**Key lesson**: Pivot means change direction, not preserve code. If architecture is wrong, start fresh.
+**How to pivot:**
 
----
-
-## Summary: Iteration and Scaling
-
-**When to pivot**:
-- User behavior contradicts stated needs
-- Technical constraints block core value
-- Adjacent opportunity emerges
-- Competitive landscape shifts
-
-**How to pivot**:
 1. Identify what to keep (validated learnings)
 2. Update documentation first (PRD, architecture)
 3. Feature flag the pivot (parallel old/new)
-4. Measure the pivot (success metrics + guard rails)
+4. Measure the pivot (success metrics + guardrails)
 
-**Refactor vs start fresh**:
-- Refactor: Core architecture still valid, debt localized
-- Start fresh: Architecture fundamentally wrong, major pivot
+**Refactor vs start fresh:**
 
-**When to scale**:
-- Performance degradation
-- Cost explosion
-- Reliability issues
-- Feature velocity slowing
+* Refactor: Core architecture still valid, debt localized
+* Start fresh: Architecture fundamentally wrong, major pivot
 
-**Migration patterns**:
-- BaaS → Custom backend (parallel, gradual cutover)
-- Monolith → Microservices (one service at a time)
-- Synchronous → Asynchronous (add queue, poll status)
+**When to scale:**
 
-**Maintain velocity**:
-- Ship features while refactoring
-- Feature flags for progressive rollout
-- Automated testing prevents regressions
-- Backward compatibility during migration
+* Performance degradation
+* Cost explosion
+* Reliability issues
+* Feature velocity slowing
 
-**Technical debt**:
-- Pay down when: Blocks velocity, causes issues, confuses team
-- Defer when: Localized, not spreading, features more important
+**Migration patterns:**
 
----
+* BaaS → Custom backend (parallel, gradual cutover)
+* Monolith → Microservices (one service at a time)
+* Synchronous → Asynchronous (add queue, poll status)
 
-This completes the Product Development Playbook. You now have:
+**Maintain velocity:**
 
-1. **Discovery in Claude** - Research, problem statements, assumptions, experiments, PRD
-2. **Knowledge Handoff** - Packaging discovery for Cursor consumption
-3. **Infrastructure Setup** - Decision frameworks, standard configuration
-4. **Iteration and Scaling** - Pivots, refactoring, infrastructure evolution
+* Ship features while refactoring
+* Feature flags for progressive rollout
+* Automated testing prevents regressions
+* Backward compatibility during migration
 
-**Total time investment**: 
-- Discovery: 4-8 weeks
-- Handoff: 4-8 hours
-- Setup: 4-6 hours
-- Development: Ongoing
+**Technical debt:**
 
-**Why this matters**: Speed of movement is linked to speed of data insights. This playbook helps you move fast without breaking things.
+* Pay down when: Blocks velocity, causes issues, confuses team
+* Defer when: Localized, not spreading, features more important
+
+***
+
+### Playbook Complete
+
+You now have a systematic approach from discovery to scaling:
+
+<table><thead><tr><th>Part</th><th width="372">Purpose</th><th>Time</th></tr></thead><tbody><tr><td><strong>Part 1:</strong> Discovery &#x26; Synthesis</td><td>Question the brief, validate the problem, develop hypothesis</td><td>4-8 hours</td></tr><tr><td><strong>Part 2:</strong> PRD Development</td><td>Transform insights into implementation-ready spec</td><td>2-3 hours</td></tr><tr><td><strong>Part 3:</strong> Knowledge Handoff</td><td>Package discovery for Cursor consumption</td><td>4-6 hours</td></tr><tr><td><strong>Part 4:</strong> Infrastructure Setup</td><td>Configure projects for scalable development</td><td>4-6 hours</td></tr><tr><td><strong>Part 5:</strong> Iteration &#x26; Scaling</td><td>Handle pivots, refactoring, evolution</td><td>Ongoing</td></tr></tbody></table>
+
+**Total time to first code:** 14-24 hours (not weeks)
+
+**Why this matters:** Speed of movement is linked to speed of data insights. This playbook helps you move fast without breaking things.
+
+***
+
+_This playbook evolves as I learn. Current version reflects patterns that worked in aviation (8 years), defense (6 years), and enterprise software (current)._

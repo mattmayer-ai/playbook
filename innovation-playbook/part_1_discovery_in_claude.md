@@ -1,557 +1,357 @@
-# Part 1: Discovery and Synthesis
+# Part 2: PRD Development
 
-**Purpose**: Validate problems and synthesize insights before writing PRD.
+**Purpose:** Transform Discovery Insights Report into implementation-ready PRD with prioritized features, identified risks, clear constraints, and success metrics.
 
-**Time**: 4-7 hours total
+**Time:** 2-3 hours
 
-**Output**: Discovery Insights Report (assumptions, hypothesis, insights, problem reframe, recommended direction)
+**Input:** Discovery Insights Report from Part 1
 
-**What's included**: Copy-paste prompts for each step—just fill in your specifics and paste into any AI tool (Claude, ChatGPT, Perplexity, etc.).
-
-***
-
-### Why Discovery and Synthesis
-
-You need evidence-backed direction before writing a PRD. Not full validation—that comes after MVP. Just enough to avoid building something obviously wrong.
-
-**Without this**: "Build a productivity app" → No direction, just assumptions\
-**With this**: "Contractors lose bids due to slow estimation (15/15 interviews confirmed), not pricing errors. Build speed-first tool targeting <2 hour estimates vs. 8 hour baseline."
-
-The difference is 4-7 hours of focused discovery with AI assistance.
+**Output:** Complete PRD ready for development
 
 ***
 
-### The Process
+### Why PRD Development Matters
 
-Four steps, 4-7 hours total:
+**Part 1 gave you:** Evidence-backed direction ("here's the problem, here's our hypothesis")
 
-1. **AI-Assisted Market Research** (30-60 min) - ALWAYS start here
-2. **Pick Your Validation Method** (30 min) - Choose based on what market research revealed
-3. **Execute Discovery** (2-4 hours) - Follow your chosen method
-4. **Synthesis & Insights** (1-2 hours) - Transform raw data into direction
+**Part 2 gives you:** Implementation specification ("here's exactly what to build, in what order, with what constraints, and how we'll know it worked")
 
-**Critical**: Step 3 is where product thinking happens. Raw research without synthesis is just data collection.
+<table><thead><tr><th width="314">Without this step</th><th>With this step</th></tr></thead><tbody><tr><td>"Build a coordinator dashboard"</td><td>"Build dashboard with 3 P0 features (patient matching, contact list, diversity tracking), defer analytics to V2, must integrate with EHR API, success = 50% time savings"</td></tr></tbody></table>
 
 ***
 
-### Step 0: AI-Assisted Market Research (30-60 min)
+### Prototype vs. MVP vs. V2
 
-**START HERE EVERY TIME.** Before you pick a validation method, get AI to map the landscape.
+Before prioritizing features, define what you're building:
 
-Use Claude with web search, ChatGPT with browsing, or Perplexity.
+<table><thead><tr><th width="133">Type</th><th>Purpose</th><th>Scope</th><th>Quality Bar</th></tr></thead><tbody><tr><td><strong>Prototype</strong></td><td>Test hypothesis with users</td><td>Core flow only</td><td>Works for demo, not production</td></tr><tr><td><strong>MVP</strong></td><td>Validate with real usage</td><td>Minimum to deliver value</td><td>Production-ready, limited features</td></tr><tr><td><strong>V2</strong></td><td>Scale based on learnings</td><td>Expanded features</td><td>Full polish</td></tr></tbody></table>
 
-#### What You're Learning
+***
 
-* Who are the existing players?
-* What do they cost?
-* What are users complaining about?
-* What gaps exist?
-* Are there regulatory constraints?
+### Component 1: Feature Prioritization (30 min)
+
+#### Priority Levels
+
+<table><thead><tr><th width="161">Level</th><th width="184">Definition</th><th>Criteria</th></tr></thead><tbody><tr><td><strong>P0</strong></td><td>Launch blocker</td><td>User can't complete primary job without this</td></tr><tr><td><strong>P1</strong></td><td>High priority</td><td>Significantly improves value but minimally viable without</td></tr><tr><td><strong>V2</strong></td><td>Deferred</td><td>Valuable but can validate need after launch</td></tr></tbody></table>
+
+#### Decision Tree
+
+```
+Does removing this break the core job-to-be-done?
+├─ YES → P0
+└─ NO → Did 3+ users cite this as painful?
+    ├─ YES → P1
+    └─ NO → Is this technically complex/risky?
+        ├─ YES → V2 (validate core first)
+        └─ NO → Can we measure if this works?
+            ├─ YES → P1 (if capacity allows)
+            └─ NO → V2 (defer until measurable)
+```
 
 #### Copy-Paste Prompt
 
 ```
-I have an idea for: [YOUR IDEA - 1-2 sentences]
+Based on Discovery Insights Report, prioritize features:
 
-Help me research the market:
+[PASTE RECOMMENDED DIRECTION from Part 1 - Core Capabilities section]
+[PASTE KEY INSIGHTS from Part 1 - what users said was painful]
 
-1. **Existing solutions**: Who are the top 5-7 competitors/alternatives? 
-   - Use web search to find them
-   - Include both direct competitors and adjacent solutions
+For each capability/feature:
 
-2. **Pricing landscape**: What do these solutions cost?
-   - Find pricing pages
-   - Note free tiers, entry-level plans, enterprise pricing
+1. **Feature name**: [Specific capability]
+2. **User problem it solves**: [From research]
+3. **Evidence**: [How many users mentioned, severity]
+4. **Priority**:
+   - P0 if: Core job breaks without it
+   - P1 if: Significantly improves value but not essential
+   - V2 if: Nice-to-have or needs validation first
+5. **Reasoning**: [Why this priority]
 
-3. **User complaints**: What are people saying is broken?
-   - Search Reddit, G2, Capterra for "[competitor name] review"
-   - Look for patterns in negative reviews
-   - Find forum discussions about problems in this space
+Create feature priority table:
 
-4. **Market gaps**: What's missing?
-   - Features users are asking for
-   - Use cases not being served
-   - Underserved user segments
+| Feature | User Value | Evidence | Complexity | Priority | Reasoning |
+|---------|------------|----------|------------|----------|-----------|
 
-5. **Regulatory landscape**: Are there compliance requirements?
-   - HIPAA, GDPR, industry-specific regulations
-   - Data handling requirements
-   - Certification or licensing needs
-
-Synthesize findings into:
-- Competitive landscape table
-- Common user complaints
-- Identified gaps
-- Regulatory constraints (if any)
-- Pricing benchmarks
-
-Format as markdown with clear sections.
-```
-
-#### Decision Point
-
-Based on market research:
-
-* **Competitors exist but users complain** → Proceed to Step 1
-* **Market saturated, users happy** → Consider different idea
-* **No competitors exist** → Validate the problem is real
-
-***
-
-### Step 1: Pick Your Validation Method (30 min)
-
-Choose ONE based on what you're uncertain about.
-
-#### Option A: User Interviews
-
-**Use when**: You have a problem hypothesis but don't know if it's painful enough
-
-**What to do**:
-
-* Find 3-5 people who have the problem
-* 30-minute calls each
-* Ask: What's your current workflow? Where does it break? How much time/money does that cost?
-
-**Time**: 3-4 hours (includes recruitment, calls, synthesis)
-
-**Copy-Paste Prompt**:
-
-```
-I'm building [YOUR PRODUCT IDEA - 1-2 sentences].
-
-Target users: [WHO - e.g., "elementary teachers", "construction contractors"]
-Problem I think they have: [PROBLEM]
-
-Create an interview script for 30-minute calls. Generate 10-12 open-ended questions that:
-
-1. Understand current workflow (3-4 questions)
-2. Identify pain points (3-4 questions)
-3. Quantify impact (2-3 questions)
-4. Test solution fit (2-3 questions)
-
-Avoid leading questions. Don't describe my solution—focus on their problem.
-Format as numbered list with follow-up probes.
-```
-
-#### Option B: Deep Problem Research
-
-**Use when**: Market research shows complaints exist, but you need deeper understanding
-
-**What to do**:
-
-* Use AI to search forums, Reddit, Twitter for actual user complaints
-* Analyze language patterns
-* Identify specific user segments
-* Quantify severity
-
-**Time**: 1-2 hours (AI-assisted research)
-
-**Copy-Paste Prompt**:
-
-```
-Based on this market research: [PASTE YOUR MARKET RESEARCH FROM STEP 0]
-
-Now find the user voice. Search for:
-
-1. Reddit discussions in relevant subreddits
-2. Forum discussions with problem keywords
-3. Twitter/X conversations
-
-Focus on finding:
-- WHO specifically has this problem
-- HOW they describe it (their words, not industry jargon)
-- WHAT they've tried (existing solutions, workarounds, why they failed)
-- HOW SEVERE (quantifiable impact: hours wasted, money lost)
-
-Organize findings by:
-- User segment
-- Pain point themes (with frequency count)
-- Verbatim quotes
-- Quantified impact
-
-Format as markdown with clear sections and quote attribution.
-```
-
-#### Option C: Quick Technical Experiment
-
-**Use when**: You're unsure if the technical approach will work
-
-**What to do**:
-
-* Build smallest possible test (1-3 hours of coding)
-* Example: If building AI tool, test prompt quality with 5-10 examples
-* Example: If building integration, test API with sample data
-
-**Time**: 2-4 hours (includes coding, testing, analysis)
-
-**Copy-Paste Prompt**:
-
-```
-I want to build [YOUR PRODUCT] using [AI MODEL/API].
-
-Help me design a quick test to validate feasibility:
-
-1. Generate 10 test cases representing typical use
-2. For each test case, write:
-   - Input (what user would provide)
-   - Expected output (what constitutes "success")
-   - Acceptance criteria (how to judge if it's good enough)
-
-3. Provide code template to run the test
-
-Target language: [Python/JavaScript/etc.]
-API/Model: [Anthropic Claude/OpenAI/etc.]
+Rules:
+- Limit P0 to 3-5 features max (if everything is P0, nothing is)
+- P1 features should be completable in 1-2 sprints each
+- V2 features need clear "why defer" reasoning
 ```
 
 ***
 
-### Step 2: Execute Discovery (2-4 hours)
+### Component 2: Risk Identification & Mitigation (30 min)
 
-#### If You Chose User Interviews
+#### Risk Categories
 
-After conducting 3-5 interviews, synthesize findings.
+<table><thead><tr><th width="167">Category</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><strong>Technical</strong></td><td>Can we build this?</td><td>"EHR integration may not provide real-time data"</td></tr><tr><td><strong>Adoption</strong></td><td>Will users actually use this?</td><td>"Coordinators may not trust AI confidence scores"</td></tr><tr><td><strong>Business</strong></td><td>Does this align with constraints?</td><td>"HIPAA requirements may limit data access"</td></tr><tr><td><strong>Data</strong></td><td>Do we have the data we need?</td><td>"Patient eligibility data may be incomplete"</td></tr></tbody></table>
 
-**Copy-Paste Synthesis Prompt**:
-
-```
-I conducted [NUMBER] user interviews about [PROBLEM AREA].
-
-Here are my raw notes from each interview:
-
-**Interview 1**: [PASTE NOTES]
-**Interview 2**: [PASTE NOTES]
-[Continue for all interviews]
-
-Synthesize these findings:
-
-1. **Current workflow patterns**
-2. **Pain point themes** (ranked by frequency, include verbatim quotes)
-3. **Quantified impact** (time wasted, money lost, consequences)
-4. **Current workarounds** (what they do now, why it doesn't work)
-5. **Willingness to change** (motivation, what would make them try new solution)
-6. **Decision**: Build / Don't build / Need more data (with reasoning)
-
-Format as markdown with clear sections.
-```
-
-#### If You Chose Deep Problem Research
-
-Use AI to analyze forum/Reddit posts.
-
-**Copy-Paste Synthesis Prompt**:
+#### Copy-Paste Prompt
 
 ```
-Based on the user voice research you did, organize findings:
+Based on Discovery Insights Report and features, identify risks:
 
-1. **User segments** (who has this problem? Which segment most underserved?)
-2. **Pain point themes** (ranked by frequency with vivid quotes)
-3. **Quantified impact** (from user posts)
-4. **Why current solutions fail** (with quotes)
-5. **Our opportunity** (gap we can fill, segment to target, minimum viable solution)
+[PASTE RECOMMENDED DIRECTION from Part 1]
+[PASTE ASSUMPTIONS MATRIX from Part 1 - especially "TO VALIDATE" items]
+[PASTE PRIORITIZED FEATURES from Component 1]
 
-**Decision**: Build / Don't build / Need more data (with reasoning)
+For each risk:
 
-Format as markdown.
-```
+1. **Risk description**: [What could go wrong]
+2. **Category**: Technical / Adoption / Business / Data
+3. **Likelihood**: High / Medium / Low
+4. **Impact if occurs**: High / Medium / Low
+5. **Mitigation strategy**: [How to reduce likelihood or impact]
+6. **Contingency plan**: [What if risk materializes]
 
-#### If You Chose Quick Technical Experiment
+Create risk table:
 
-After running test code, analyze results.
+| Risk | Category | Likelihood | Impact | Mitigation | Contingency |
+|------|----------|------------|--------|------------|-------------|
 
-**Example Analysis**:
-
-```markdown
-## Technical Validation: [What You Tested]
-
-**Test date**: [Date]
-**Test cases**: [Number and types]
-**Model/API tested**: [Technology]
-
-**Results**:
-- Acceptable quality: X/Y (Z%)
-- Issues found: [List]
-- Performance: [Metrics]
-
-**Workarounds identified**: [Solutions to issues]
-
-**Decision**: Proceed / Improve approach / Different technology
-**Reasoning**: [Based on test results]
+Focus on:
+- Assumptions marked "TO VALIDATE" (these are risks)
+- Technical dependencies (APIs, integrations)
+- User adoption barriers (workflow changes)
+- Regulatory/compliance requirements
 ```
 
 ***
 
-### Step 3: Synthesis & Insights (1-2 hours)
+### Component 3: Constraints Analysis (20 min)
 
-**This is where product thinking happens.** Transform raw research into actionable direction.
+#### Constraint Types
 
-You now have market research and discovery data. Before writing a PRD, synthesize findings into:
+<table><thead><tr><th width="200">Type</th><th>Examples</th></tr></thead><tbody><tr><td><strong>Technical</strong></td><td>Platform, APIs, performance thresholds</td></tr><tr><td><strong>Regulatory</strong></td><td>HIPAA, GDPR, industry-specific</td></tr><tr><td><strong>Business</strong></td><td>Budget, vendor relationships, strategic alignment</td></tr><tr><td><strong>Time</strong></td><td>Deadlines, dependencies, seasonal factors</td></tr><tr><td><strong>Team</strong></td><td>Capacity, skills, timezone</td></tr><tr><td><strong>User</strong></td><td>Workflow integration, change tolerance, existing tools</td></tr></tbody></table>
 
-* **Assumptions Matrix** (validated vs. needs testing)
-* **Hypothesis** (testable statement about solution)
-* **Key Insights** (evidence-backed learnings)
-* **Problem Reframe** (shift from assumptions to evidence)
-* **Recommended Direction** (which solution to build and why)
-
-#### Component 1: Assumptions Matrix
-
-**Copy-Paste Prompt**:
+#### Copy-Paste Prompt
 
 ```
-Based on my discovery work:
+Map all constraints:
 
-[PASTE MARKET RESEARCH FROM STEP 0]
-[PASTE DISCOVERY FINDINGS FROM STEP 2]
+[PASTE PROBLEM REFRAME from Part 1 - includes current workflow]
+[PASTE RECOMMENDED DIRECTION from Part 1]
 
-Create an Assumptions Matrix with 8-12 assumptions:
+For each constraint type:
 
-For each assumption:
-1. Assumption statement (specific, testable)
-2. Confidence level: HIGH (multiple sources confirm) or TO VALIDATE (needs confirmation)
-3. Evidence (what supports this)
-4. Risk if wrong (what breaks)
+## Technical Constraints
+- Platform: [What systems must we integrate with]
+- Performance: [Response time, load requirements]
+- APIs/Services: [Third-party dependencies]
 
-Format as table:
+## Regulatory Constraints
+- Compliance: [HIPAA, GDPR, industry-specific]
+- Data handling: [What can/cannot be stored]
 
-| # | Assumption | Confidence | Evidence | Risk if Wrong |
-|---|------------|------------|----------|---------------|
-| 1 | [Statement] | HIGH / TO VALIDATE | [Source] | [Impact] |
+## Business Constraints
+- Budget: [Available resources]
+- Timeline: [Hard deadlines]
+- Vendor: [Existing partnerships]
 
-Group by: High Confidence vs. To Validate
+## User Constraints
+- Workflow: [Can't disrupt existing process]
+- Tools: [Already using X systems]
+- Change tolerance: [How much learning acceptable]
+
+For each:
+- **Why it matters**: [Impact on product]
+- **How it shapes solution**: [What we must/can't do]
 ```
 
-**Example Output**:
+***
 
-```markdown
-## Assumptions Matrix
+### Component 4: Success Metrics Framework (30 min)
 
-### High Confidence
+#### Metric Levels
 
-| # | Assumption | Evidence | Risk if Wrong |
-|---|------------|----------|---------------|
-| 1 | Sites use paper/spreadsheets for pre-screening | Industry surveys | Solving wrong bottleneck |
-| 2 | Funnel breaks early - 56% fail before connection | Tufts CSDD study | Optimizing wrong part |
+<table><thead><tr><th width="181">Level</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><strong>Input</strong></td><td>What users do</td><td>Usage, adoption, engagement</td></tr><tr><td><strong>Output</strong></td><td>What product delivers</td><td>Efficiency, quality, outcomes</td></tr><tr><td><strong>Outcome</strong></td><td>Business impact</td><td>Revenue, cost savings, strategic goals</td></tr></tbody></table>
 
-### To Validate
-
-| # | Assumption | Logical Basis | Risk if Wrong |
-|---|------------|---------------|---------------|
-| 7 | Our users have similar pain points | Industry patterns apply | Solution doesn't fit workflow |
-```
-
-#### Component 2: Hypothesis Formation
-
-**Structure**:
+#### Copy-Paste Prompt
 
 ```
-We believe that [problem statement] because [evidence].
+Define success metrics based on hypothesis and features:
 
-A solution that [approach] will [outcome] without [constraint].
+[PASTE HYPOTHESIS from Part 1]
+[PASTE PRIORITIZED FEATURES from Component 1]
 
-Validation status: [Supported/Partial/Invalidated] based on [evidence].
+## Success Metrics
+
+**Primary Metric** (North Star):
+[ONE metric indicating overall success]
+- Target: [Specific threshold]
+- Timeline: [When we measure]
+
+**Input Metrics** (Leading Indicators):
+1. [Metric]: [Target] - [How measured]
+2. [Metric]: [Target] - [How measured]
+
+**Output Metrics** (Product Value):
+1. [Metric]: [Target] - [How measured]
+2. [Metric]: [Target] - [How measured]
+
+**Guardrail Metrics** (Must Not Degrade):
+1. [Metric]: [Threshold] - [Concern if breached]
+
+**Decision Point**:
+After [N] weeks/users, if [metric] below [threshold], then [action].
 ```
 
-**Copy-Paste Prompt**:
+***
+
+### Component 5: MVP Boundary Decisions (20 min)
+
+#### Include If
+
+* P0 feature (core job broken without it)
+* Validates critical assumption from research
+* Users specifically mentioned need
+* Required for measuring success metrics
+
+#### Exclude If
+
+* Nice-to-have (P1/V2)
+* Adds complexity without validated need
+* Can be added after usage data
+* Requires significant technical risk
+
+#### Copy-Paste Prompt
 
 ```
-Based on discovery work and assumptions matrix:
+Define MVP boundaries:
 
-[PASTE MARKET RESEARCH]
-[PASTE ASSUMPTIONS MATRIX]
+[PASTE PRIORITIZED FEATURES from Component 1]
+[PASTE RISK ANALYSIS from Component 2]
+[PASTE CONSTRAINTS from Component 3]
 
-Create testable hypothesis:
+## In Scope (Must Build)
 
-**Initial Hypothesis**:
-We believe that [WHO] struggles with [PROBLEM] because [ROOT CAUSE backed by evidence].
+**Feature**: [Name]
+- **Why included**: [Validates X / Enables Y / Needed for metric Z]
+- **Definition of Done**: [What "complete" looks like]
 
-A solution that [APPROACH] will [MEASURABLE OUTCOME] without [CONSTRAINTS].
+## Out of Scope (V2+)
 
-**Validation Status**: SUPPORTED / PARTIAL / INVALIDATED
+**Feature**: [Name]
+- **Why deferred**: [Can validate after launch / High complexity / Nice-to-have]
+- **When to revisit**: [After N users / When metric X achieved]
 
-Based on [EVIDENCE]:
-☑ [Supporting evidence 1]
-☑ [Supporting evidence 2]
+## Edge Cases
 
-**Success Criteria**:
-- [Metric 1]: [Target]
-- [Metric 2]: [Target]
+**Must Handle in MVP**:
+- [Edge case]: [Why critical]
 
-**Failure Criteria**:
-- [Metric]: [Threshold for pivot]
+**Defer to V2**:
+- [Edge case]: [Why acceptable to skip]
 ```
 
-#### Component 3: Key Insights
+***
 
-**Purpose**: Extract the "so what?" from research data.
+### Component 6: Feature Trade-Offs (20 min)
 
-**Copy-Paste Prompt**:
+#### Trade-Off Categories
 
-```
-Based on research, identify 5-7 KEY INSIGHTS:
+<table><thead><tr><th width="296">Category</th><th>Trade-Off</th></tr></thead><tbody><tr><td><strong>Scope vs. Time</strong></td><td>Feature richness vs. speed to market</td></tr><tr><td><strong>Quality vs. Speed</strong></td><td>Production polish vs. rapid validation</td></tr><tr><td><strong>Flexibility vs. Simplicity</strong></td><td>Configurable vs. opinionated</td></tr><tr><td><strong>Build vs. Buy</strong></td><td>Custom development vs. third-party integration</td></tr></tbody></table>
 
-[PASTE MARKET RESEARCH]
-[PASTE DISCOVERY FINDINGS]
-
-For each insight:
-1. Title: Short, punchy statement
-2. Evidence: 3-5 specific data points
-3. Implication: What this means for solution design
-
-Insights should challenge assumptions and reveal patterns.
-
-Format as:
-
-## Insight 1: [Title]
-
-**Evidence**:
-• [Data point with source]
-• [Data point with source]
-
-**Implication**: [What this means]
-```
-
-**Example Output**:
-
-```markdown
-## Insight 1: Problem is Access, Not Willingness
-
-**Evidence**:
-• 56% of failures occur because no one connected patient to trial
-• Only 2-8% participate, but climbs when friction reduced
-• Decentralized trials show 96% retention vs. 70%
-
-**Implication**: Focus on surfacing eligible patients and reducing friction, not "convincing" patients.
-```
-
-#### Component 4: Problem Reframe
-
-**Purpose**: Show how evidence changed your understanding.
-
-**Copy-Paste Prompt**:
+#### Copy-Paste Prompt
 
 ```
-Create PROBLEM REFRAME showing how evidence changed understanding:
+Document trade-off decisions:
 
-[PASTE INITIAL IDEA/ASSUMPTION]
-[PASTE KEY INSIGHTS]
+[PASTE MVP SCOPE from Component 5]
+[PASTE CONSTRAINTS from Component 3]
 
-**What We Thought**:
-[Initial problem assumption]
+For each major decision:
 
-**What Research Revealed**:
-[Evidence-backed actual problem]
-
-**Core Reframe**:
-[New problem statement - specific, evidence-backed]
+**Decision**: [What we chose]
+**Alternative**: [What we didn't choose]
+**Trade-off**: [What we gained vs. gave up]
+**Reasoning**: [Why this choice, based on evidence/constraints]
+**Revisit condition**: [When we might reverse]
 ```
 
-**Example Output**:
+***
 
-```markdown
-**What We Thought**: Patients aren't participating because they fear trials
+### Final PRD Compilation (30 min)
 
-**What Research Revealed**: 56% never connected to trials—problem is access, not fear
-
-**Core Reframe**: Eligible patients exist but aren't being connected to the right trial at the right moment. This is an access problem, not a willingness problem.
-```
-
-#### Component 5: Recommended Direction
-
-**Copy-Paste Prompt**:
+#### Copy-Paste Prompt
 
 ```
-Recommend which solution to build:
+Compile all PRD components:
 
-[PASTE PROBLEM REFRAME]
-[PASTE KEY INSIGHTS]
-[PASTE ASSUMPTIONS MATRIX]
+[PASTE DISCOVERY INSIGHTS REPORT from Part 1]
+[PASTE PRIORITIZED FEATURES from Component 1]
+[PASTE RISK ANALYSIS from Component 2]
+[PASTE CONSTRAINTS from Component 3]
+[PASTE SUCCESS METRICS from Component 4]
+[PASTE MVP SCOPE from Component 5]
+[PASTE TRADE-OFFS from Component 6]
 
-## Options Considered
+Generate complete PRD:
 
-Create 3 solution options with:
-- Description
-- Problems addressed
-- Pros/cons
+# [Product Name] - Product Requirements Document
 
-## Recommended: Option [X]
+**Version**: 1.0
+**Last Updated**: [Date]
+**Status**: Ready for Development
+**Type**: [Prototype / MVP / V2]
 
-**Why This Option**: [Evidence-based reasoning]
+## Executive Summary
+[Problem, hypothesis, success criteria - 3 sentences]
 
-**Core Capabilities** (MVP):
-1. [Capability]: [Why essential]
-2. [Capability]: [Why essential]
+## Product Overview
+- **One-line**: [What it does + who uses it]
+- **Problem**: [Root cause from discovery]
+- **Hypothesis**: [Testable statement with mechanism]
+- **Evidence**: [Key findings from research]
 
-**Out of Scope** (V2+):
-- [Feature]: [Why deferring]
+## Target Users
+[From Part 1 - who, job-to-be-done, pain points]
 
-**Validation Plan**:
-1. [First assumption to test]
-```
+## Features & Prioritization
+[P0, P1, V2 tables from Component 1]
 
-#### Compile Discovery Insights Report
+## Risk Analysis
+[Risk table with mitigations from Component 2]
 
-**Copy-Paste Prompt**:
+## Constraints
+[All constraint types from Component 3]
 
-```
-Compile all components into Discovery Insights Report:
+## Success Metrics
+[North Star, input/output/guardrail from Component 4]
 
-[PASTE ASSUMPTIONS MATRIX]
-[PASTE HYPOTHESIS]
-[PASTE KEY INSIGHTS]
-[PASTE PROBLEM REFRAME]
-[PASTE RECOMMENDED DIRECTION]
+## MVP Scope
+[In scope, out of scope from Component 5]
 
-Create structured report with sections:
-- Executive Summary (reframe + recommendation)
-- Hypothesis
-- Methodology
-- Assumptions Matrix
-- Key Insights
-- Problem Reframe
-- Recommended Direction
-- What to Validate Next
+## Key Trade-Offs
+[Major decisions from Component 6]
+
+## User Flows
+[Primary flow for P0 features]
+
+## Open Questions
+[What we still need to learn]
 
 Format as professional markdown.
 ```
 
 ***
 
-### Summary: Discovery and Synthesis (4-7 hours)
+### PRD Quality Checklist
 
-**What you produce**: 0. Market research (30-60 min): Competitive landscape, user complaints, gaps
-
-1. Validation method choice (30 min): Pick ONE based on market research
-2. Discovery execution (2-4 hours): User interviews OR problem research OR technical experiment
-3. Synthesis & insights (1-2 hours): Assumptions, hypothesis, insights, reframe, direction
-
-**Total time**: 4-7 hours
-
-**Tools**: Any conversational AI (Claude, ChatGPT, Perplexity) with web search
-
-**Output**: Discovery Insights Report with evidence-backed direction
-
-#### When to invest more time
-
-* **Regulated industry** (healthcare, finance) - add 2-4 hours for compliance research
-* **Unfamiliar domain** - add 2-3 hours for deeper market research
-* **High technical risk** - add 2-4 hours for extensive proof-of-concept
-* **Enterprise sales** - add 3-4 hours for buyer persona research
-
-#### Red flags: don't build
-
-* Market research shows no complaints
-* Users can't quantify the problem
-* Technical experiment shows fundamental blockers
-* Regulatory requirements prohibitively complex
-* Saturated market with happy users
-
-#### Green lights: proceed to PRD
-
-* 3+ users articulate same pain point
-* Quantified impact (time/money) is significant
-* Technical feasibility validated
-* Clear gap in competitive landscape
-* Users express willingness to pay
+<table><thead><tr><th width="575">Criterion</th><th>Check</th></tr></thead><tbody><tr><td>Problem is root cause, not symptom</td><td>☐</td></tr><tr><td>Hypothesis is testable and falsifiable</td><td>☐</td></tr><tr><td>Assumptions are explicit</td><td>☐</td></tr><tr><td>Features linked to evidence</td><td>☐</td></tr><tr><td>P0 limited to 3-5 features</td><td>☐</td></tr><tr><td>Out of scope is defined with reasoning</td><td>☐</td></tr><tr><td>Success metrics are measurable</td><td>☐</td></tr><tr><td>Risks have mitigations</td><td>☐</td></tr><tr><td>Constraints shape solution</td><td>☐</td></tr></tbody></table>
 
 ***
 
-**Next**: Part 2: PRD Development
+### Summary: PRD Development (2-3 hours)
+
+<table><thead><tr><th width="239">Component</th><th width="125">Time</th><th>Output</th></tr></thead><tbody><tr><td>Feature Prioritization</td><td>30 min</td><td>P0, P1, V2 with reasoning</td></tr><tr><td>Risk Analysis</td><td>30 min</td><td>Risk table with mitigations</td></tr><tr><td>Constraints Analysis</td><td>20 min</td><td>6 types that shape solution</td></tr><tr><td>Success Metrics</td><td>30 min</td><td>North Star + input/output/guardrail</td></tr><tr><td>MVP Boundaries</td><td>20 min</td><td>In scope vs. out of scope</td></tr><tr><td>Trade-Offs</td><td>20 min</td><td>Major decisions with rationale</td></tr><tr><td>Final PRD</td><td>30 min</td><td>Complete document</td></tr></tbody></table>
+
+**Total time:** 2-3 hours
+
+**Input:** Discovery Insights Report from Part 1
+
+**Output:** Complete PRD ready for Knowledge Handoff
+
+***
+
+**Next: Part 3: Knowledge Handoff** — Package discovery and PRD for Cursor consumption.
